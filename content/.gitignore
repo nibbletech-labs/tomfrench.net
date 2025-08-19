@@ -1,0 +1,16 @@
+# Obsidian
+.obsidian/workspace*
+.obsidian/cache
+.obsidian/hotkeys.json
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Keep these Obsidian settings
+!.obsidian/app.json
+!.obsidian/appearance.json
+!.obsidian/templates.json
+!.obsidian/community-plugins.json
+
+# OS
+.DS_Store
+.trash/
