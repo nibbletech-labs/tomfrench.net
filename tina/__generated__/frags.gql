@@ -1,0 +1,44 @@
+fragment ArticleParts on Article {
+  __typename
+  title
+  date
+  category
+  tags
+  published
+  excerpt
+  featuredImage
+  body
+}
+
+fragment ProjectParts on Project {
+  __typename
+  title
+  date
+  company
+  role
+  duration
+  category
+  tags
+  featured
+  published
+  excerpt
+  image
+  impact {
+    __typename
+    revenue
+    users
+    efficiency
+  }
+  technologies
+  body
+}
+
+fragment ResourceParts on Resource {
+  __typename
+  title
+  date
+  category
+  published
+  excerpt
+  body
+}
