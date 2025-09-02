@@ -1,4 +1,4 @@
-import { getArticle, getArticles } from '@/lib/obsidian'
+import { getArticle, getArticles } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 

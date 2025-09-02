@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getArticles, getProjects } from '@/lib/obsidian'
+import { getArticles, getProjects } from '@/lib/content'
 
 export default async function HomePage() {
   const articles = await getArticles()

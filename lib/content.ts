@@ -22,64 +22,8 @@ export interface ContentItem {
   [key: string]: any
 }
 
-// Convert Obsidian wikilinks [[Link]] to markdown links
-function convertWikiLinks(content: string): string {
-  // Handle image embeds ![[image.png]]
-  content = content.replace(
-    /!\[\[([^\]]+)\]\]/g,
-    (match, filename) => {
-      // Check if it's an image
-      if (/\.(png|jpg|jpeg|gif|svg|webp)$/i.test(filename)) {
-        return `![${filename}](/attachments/${filename})`
-      }
-      // Otherwise treat as embedded content (we'll just link to it)
-      return `[${filename}](/${filename})`
-    }
-  )
-
-  // Handle regular wikilinks [[Link|Display Text]] or [[Link]]
-  content = content.replace(
-    /\[\[([^\]|]+)(\|([^\]]+))?\]\]/g,
-    (match, link, _, displayText) => {
-      const text = displayText || link
-      // Convert to a regular markdown link
-      const slug = link.toLowerCase().replace(/\s+/g, '-')
-      return `[${text}](/articles/${slug})`
-    }
-  )
-
-  return content
-}
-
-// Convert Obsidian callouts
-function convertCallouts(content: string): string {
-  // Match Obsidian callouts like > [!note] Title
-  return content.replace(
-    /^>\s*\[!(\w+)\](.*)$/gm,
-    (match, type, title) => {
-      const calloutTypes: { [key: string]: string } = {
-        note: '📝',
-        tip: '💡',
-        warning: '⚠️',
-        danger: '🚨',
-        info: 'ℹ️',
-        success: '✅',
-        question: '❓',
-        quote: '💬'
-      }
-      const emoji = calloutTypes[type.toLowerCase()] || '📌'
-      return `> **${emoji} ${type.toUpperCase()}${title}**`
-    }
-  )
-}
-
-// Process Obsidian markdown
-export async function processObsidianContent(content: string): Promise<string> {
-  // Convert Obsidian-specific syntax
-  content = convertWikiLinks(content)
-  content = convertCallouts(content)
-  
-  // Convert to HTML
+// Process markdown content to HTML
+export async function processMarkdownContent(content: string): Promise<string> {
   const result = await remark()
     .use(html)
     .process(content)
@@ -105,7 +49,7 @@ export async function getContentFromDirectory(directory: string): Promise<Conten
         const { data, content } = matter(fileContent)
         
         const slug = file.replace(/\.(md|mdx)$/, '')
-        const processedContent = await processObsidianContent(content)
+        const processedContent = await processMarkdownContent(content)
         const stats = readingTime(content)
         
         return {
@@ -146,7 +90,7 @@ export async function getContentBySlug(
 
   const fileContent = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContent)
-  const processedContent = await processObsidianContent(content)
+  const processedContent = await processMarkdownContent(content)
   const stats = readingTime(content)
   
   return {

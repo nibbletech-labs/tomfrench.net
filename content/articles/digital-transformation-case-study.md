@@ -34,7 +34,7 @@ Built lightweight app focusing on:
 - Meter reading submission
 - Basic account management
 
-> [!note] Learning Fast
+> **📝 Learning Fast**
 > We shipped weekly, gathering feedback from 1,000+ beta testers. This rapid iteration was key to finding product-market fit quickly.
 
 ### Phase 3: Scale (Months 7-12)
@@ -60,9 +60,9 @@ After 18 months:
 
 ## Lessons Learned
 
-The biggest lesson? [[Digital transformation is about people, not technology]]. The tech was the easy part—changing mindsets and behaviors was the real challenge.
+The biggest lesson? Digital transformation is about people, not technology. The tech was the easy part—changing mindsets and behaviors was the real challenge.
 
-> [!success] ROI Achievement
+> **✅ ROI Achievement**
 > The project paid for itself in 8 months through operational savings alone, not counting increased customer lifetime value.
 
 ## What I'd Do Differently

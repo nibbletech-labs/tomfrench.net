@@ -1,4 +1,4 @@
-import { getArticlesByTag, getAllTags } from '@/lib/obsidian'
+import { getArticlesByTag, getAllTags } from '@/lib/content'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 

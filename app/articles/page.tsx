@@ -1,4 +1,4 @@
-import { getArticles } from '@/lib/obsidian'
+import { getArticles } from '@/lib/content'
 import { ArticleCard } from '@/components/article-card'
 
 export default async function ArticlesPage() {

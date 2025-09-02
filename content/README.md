@@ -18,11 +18,10 @@ content/
 
 ### Using Images in Content
 
-#### In Markdown Files (Obsidian style):
+#### In Markdown Files:
 ```markdown
-![[my-image.png]]
+![Image description](/attachments/my-image.png)
 ```
-This will automatically be converted to `/attachments/my-image.png`
 
 #### In Project Frontmatter:
 ```yaml

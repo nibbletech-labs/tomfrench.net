@@ -1,4 +1,4 @@
-import { getProject, getProjects } from '@/lib/obsidian'
+import { getProject, getProjects } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 

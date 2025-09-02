@@ -24,7 +24,7 @@ Over my career, I've had the privilege of building and scaling product organizat
 
 When I joined Utility Warehouse as CPO, I inherited a team that was talented but fragmented. The first step wasn't to implement new processes—it was to establish a shared culture.
 
-> [!tip] Culture Tip
+> **💡 Culture Tip**
 > Define your team's values collaboratively. When people help create the values, they're more likely to live by them.
 
 We established three core principles:
@@ -56,7 +56,7 @@ Creating an environment where people can fail safely was transformational. We sa
 - 50% reduction in time to market
 - 4.5★ app ratings (from 2.8★)
 
-> [!success] Results
+> **✅ Results**
 > By focusing on psychological safety, we increased team engagement scores by 40% and reduced turnover to less than 5% annually.
 
 ## Lessons for Other Leaders
@@ -75,6 +75,6 @@ The future of product leadership isn't about having all the answers—it's about
 Building high-performing teams at scale isn't easy, but it's incredibly rewarding. The key is remembering that behind every metric is a human being trying to do their best work.
 
 ## Resources
-- [[OKR Implementation Guide]]
-- [[Team Health Check Template]]
+- [OKR Implementation Guide](/resources/okr-implementation-guide)
+- [Team Health Check Template](/resources/team-health-check-template)
 - [The Five Dysfunctions of a Team](https://www.amazon.com/Five-Dysfunctions-Team-Leadership-Fable/dp/0787960756)
