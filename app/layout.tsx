@@ -12,6 +12,14 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Tom French - Chief Product Officer',
   description: 'CPO, product leader, and creator. Transforming businesses through customer-centric product strategy and digital innovation.',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon.svg' }
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'Tom French - Chief Product Officer',
     description: 'CPO, product leader, and creator. Transforming businesses through customer-centric product strategy and digital innovation.',

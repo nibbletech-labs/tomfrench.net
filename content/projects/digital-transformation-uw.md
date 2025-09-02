@@ -1,5 +1,5 @@
 ---
-title: Digital Transformation at Utility Warehouse
+title: Digital Transformation at UW
 description: End-to-end digital process optimization serving 1M+ customers
 date: 2023-08-20
 featured: true

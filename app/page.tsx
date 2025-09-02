@@ -116,9 +116,17 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          {recentArticles.map((article) => (
+          {recentArticles.map((article, index) => {
+            const accents = [
+              { border: 'border-l-blue-500', hover: 'hover:bg-blue-500/5 hover:shadow-blue-500/20' },
+              { border: 'border-l-purple-500', hover: 'hover:bg-purple-500/5 hover:shadow-purple-500/20' },
+              { border: 'border-l-emerald-500', hover: 'hover:bg-emerald-500/5 hover:shadow-emerald-500/20' },
+              { border: 'border-l-orange-500', hover: 'hover:bg-orange-500/5 hover:shadow-orange-500/20' }
+            ];
+            const accent = accents[index % accents.length];
+            return (
             <article key={article.slug} className="group">
-              <Link href={`/articles/${article.slug}`} className="block card-base card-hover">
+              <Link href={`/articles/${article.slug}`} className={`block rounded-l-sm rounded-r-2xl border-l-4 ${accent.border} pl-6 pr-6 py-6 transition-all ${accent.hover} hover:shadow-lg`}>
                 <time className="text-sm font-medium text-muted">
                   {new Date(article.date).toLocaleDateString('en-US', {
                     month: 'long',
@@ -137,7 +145,8 @@ export default async function HomePage() {
                 </div>
               </Link>
             </article>
-          ))}
+            )
+          })}
         </div>
       </section>
 
