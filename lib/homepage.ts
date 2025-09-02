@@ -7,10 +7,10 @@ export interface Homepage {
   heroTitle: string
   heroSubtitle: string
   heroDescription: string
-  areasExploring?: {
+  profileImage?: string
+  ideasExploring?: {
     title: string
     description?: string
-    icon?: string
   }[]
   experienceHighlights?: {
     company: string

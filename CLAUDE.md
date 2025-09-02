@@ -40,8 +40,18 @@ npm run start
 ```bash
 # After editing tina/config.ts
 npm run dev                           # Regenerates types
+
+# TEST BUILD BEFORE COMMITTING (requires env vars)
+export NEXT_PUBLIC_TINA_CLIENT_ID=<your-id>
+export TINA_TOKEN=<your-token>
+npm run build                         # Test production build locally
+
+# If build succeeds, commit everything
 git add tina/config.ts tina/__generated__
 git commit -m "feat: Add new field with generated types"
+
+# Final build test before pushing (optional but recommended)
+npm run build
 git push
 ```
 
