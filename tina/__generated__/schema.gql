@@ -54,6 +54,8 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  homepage(relativePath: String): Homepage!
+  homepageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomepageFilter): HomepageConnection!
   article(relativePath: String): Article!
   articleConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ArticleFilter): ArticleConnection!
   project(relativePath: String): Project!
@@ -63,6 +65,7 @@ type Query {
 }
 
 input DocumentFilter {
+  homepage: HomepageFilter
   article: ArticleFilter
   project: ProjectFilter
   resource: ResourceFilter
@@ -91,7 +94,95 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Article | Project | Resource | Folder
+union DocumentNode = Homepage | Article | Project | Resource | Folder
+
+type HomepageIdeasExploring {
+  title: String!
+  description: String
+}
+
+type HomepageExperienceHighlights {
+  company: String!
+  role: String!
+  period: String
+  description: String
+  achievement: String
+}
+
+type HomepageSocialLinks {
+  linkedin: String
+  github: String
+  twitter: String
+}
+
+type Homepage implements Node & Document {
+  title: String!
+  heroTitle: String!
+  heroSubtitle: String!
+  heroDescription: String!
+  profileImage: String
+  ideasExploring: [HomepageIdeasExploring]
+  experienceHighlights: [HomepageExperienceHighlights]
+  socialLinks: HomepageSocialLinks
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input HomepageIdeasExploringFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input HomepageExperienceHighlightsFilter {
+  company: StringFilter
+  role: StringFilter
+  period: StringFilter
+  description: StringFilter
+  achievement: StringFilter
+}
+
+input HomepageSocialLinksFilter {
+  linkedin: StringFilter
+  github: StringFilter
+  twitter: StringFilter
+}
+
+input HomepageFilter {
+  title: StringFilter
+  heroTitle: StringFilter
+  heroSubtitle: StringFilter
+  heroDescription: StringFilter
+  profileImage: ImageFilter
+  ideasExploring: HomepageIdeasExploringFilter
+  experienceHighlights: HomepageExperienceHighlightsFilter
+  socialLinks: HomepageSocialLinksFilter
+}
+
+type HomepageConnectionEdges {
+  cursor: String!
+  node: Homepage
+}
+
+type HomepageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [HomepageConnectionEdges]
+}
 
 type Article implements Node & Document {
   title: String!
@@ -105,13 +196,6 @@ type Article implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input StringFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
 }
 
 input DatetimeFilter {
@@ -253,6 +337,8 @@ type Mutation {
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createFolder(collection: String, relativePath: String!): DocumentNode!
+  updateHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
+  createHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
   updateArticle(relativePath: String!, params: ArticleMutation!): Article!
   createArticle(relativePath: String!, params: ArticleMutation!): Article!
   updateProject(relativePath: String!, params: ProjectMutation!): Project!
@@ -262,6 +348,7 @@ type Mutation {
 }
 
 input DocumentUpdateMutation {
+  homepage: HomepageMutation
   article: ArticleMutation
   project: ProjectMutation
   resource: ResourceMutation
@@ -269,9 +356,40 @@ input DocumentUpdateMutation {
 }
 
 input DocumentMutation {
+  homepage: HomepageMutation
   article: ArticleMutation
   project: ProjectMutation
   resource: ResourceMutation
+}
+
+input HomepageIdeasExploringMutation {
+  title: String
+  description: String
+}
+
+input HomepageExperienceHighlightsMutation {
+  company: String
+  role: String
+  period: String
+  description: String
+  achievement: String
+}
+
+input HomepageSocialLinksMutation {
+  linkedin: String
+  github: String
+  twitter: String
+}
+
+input HomepageMutation {
+  title: String
+  heroTitle: String
+  heroSubtitle: String
+  heroDescription: String
+  profileImage: String
+  ideasExploring: [HomepageIdeasExploringMutation]
+  experienceHighlights: [HomepageExperienceHighlightsMutation]
+  socialLinks: HomepageSocialLinksMutation
 }
 
 input ArticleMutation {

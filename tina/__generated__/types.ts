@@ -82,6 +82,8 @@ export type Query = {
   collections: Array<Collection>;
   node: Node;
   document: DocumentNode;
+  homepage: Homepage;
+  homepageConnection: HomepageConnection;
   article: Article;
   articleConnection: ArticleConnection;
   project: Project;
@@ -109,6 +111,21 @@ export type QueryNodeArgs = {
 export type QueryDocumentArgs = {
   collection?: InputMaybe<Scalars['String']['input']>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryHomepageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryHomepageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HomepageFilter>;
 };
 
 
@@ -157,6 +174,7 @@ export type QueryResourceConnectionArgs = {
 };
 
 export type DocumentFilter = {
+  homepage?: InputMaybe<HomepageFilter>;
   article?: InputMaybe<ArticleFilter>;
   project?: InputMaybe<ProjectFilter>;
   resource?: InputMaybe<ResourceFilter>;
@@ -199,7 +217,101 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Article | Project | Resource | Folder;
+export type DocumentNode = Homepage | Article | Project | Resource | Folder;
+
+export type HomepageIdeasExploring = {
+  __typename?: 'HomepageIdeasExploring';
+  title: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomepageExperienceHighlights = {
+  __typename?: 'HomepageExperienceHighlights';
+  company: Scalars['String']['output'];
+  role: Scalars['String']['output'];
+  period?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  achievement?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomepageSocialLinks = {
+  __typename?: 'HomepageSocialLinks';
+  linkedin?: Maybe<Scalars['String']['output']>;
+  github?: Maybe<Scalars['String']['output']>;
+  twitter?: Maybe<Scalars['String']['output']>;
+};
+
+export type Homepage = Node & Document & {
+  __typename?: 'Homepage';
+  title: Scalars['String']['output'];
+  heroTitle: Scalars['String']['output'];
+  heroSubtitle: Scalars['String']['output'];
+  heroDescription: Scalars['String']['output'];
+  profileImage?: Maybe<Scalars['String']['output']>;
+  ideasExploring?: Maybe<Array<Maybe<HomepageIdeasExploring>>>;
+  experienceHighlights?: Maybe<Array<Maybe<HomepageExperienceHighlights>>>;
+  socialLinks?: Maybe<HomepageSocialLinks>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HomepageIdeasExploringFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HomepageExperienceHighlightsFilter = {
+  company?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  period?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  achievement?: InputMaybe<StringFilter>;
+};
+
+export type HomepageSocialLinksFilter = {
+  linkedin?: InputMaybe<StringFilter>;
+  github?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+};
+
+export type HomepageFilter = {
+  title?: InputMaybe<StringFilter>;
+  heroTitle?: InputMaybe<StringFilter>;
+  heroSubtitle?: InputMaybe<StringFilter>;
+  heroDescription?: InputMaybe<StringFilter>;
+  profileImage?: InputMaybe<ImageFilter>;
+  ideasExploring?: InputMaybe<HomepageIdeasExploringFilter>;
+  experienceHighlights?: InputMaybe<HomepageExperienceHighlightsFilter>;
+  socialLinks?: InputMaybe<HomepageSocialLinksFilter>;
+};
+
+export type HomepageConnectionEdges = {
+  __typename?: 'HomepageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Homepage>;
+};
+
+export type HomepageConnection = Connection & {
+  __typename?: 'HomepageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<HomepageConnectionEdges>>>;
+};
 
 export type Article = Node & Document & {
   __typename?: 'Article';
@@ -214,13 +326,6 @@ export type Article = Node & Document & {
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
-};
-
-export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type DatetimeFilter = {
@@ -372,6 +477,8 @@ export type Mutation = {
   deleteDocument: DocumentNode;
   createDocument: DocumentNode;
   createFolder: DocumentNode;
+  updateHomepage: Homepage;
+  createHomepage: Homepage;
   updateArticle: Article;
   createArticle: Article;
   updateProject: Project;
@@ -414,6 +521,18 @@ export type MutationCreateFolderArgs = {
 };
 
 
+export type MutationUpdateHomepageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HomepageMutation;
+};
+
+
+export type MutationCreateHomepageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HomepageMutation;
+};
+
+
 export type MutationUpdateArticleArgs = {
   relativePath: Scalars['String']['input'];
   params: ArticleMutation;
@@ -450,6 +569,7 @@ export type MutationCreateResourceArgs = {
 };
 
 export type DocumentUpdateMutation = {
+  homepage?: InputMaybe<HomepageMutation>;
   article?: InputMaybe<ArticleMutation>;
   project?: InputMaybe<ProjectMutation>;
   resource?: InputMaybe<ResourceMutation>;
@@ -457,9 +577,40 @@ export type DocumentUpdateMutation = {
 };
 
 export type DocumentMutation = {
+  homepage?: InputMaybe<HomepageMutation>;
   article?: InputMaybe<ArticleMutation>;
   project?: InputMaybe<ProjectMutation>;
   resource?: InputMaybe<ResourceMutation>;
+};
+
+export type HomepageIdeasExploringMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomepageExperienceHighlightsMutation = {
+  company?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+  period?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  achievement?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomepageSocialLinksMutation = {
+  linkedin?: InputMaybe<Scalars['String']['input']>;
+  github?: InputMaybe<Scalars['String']['input']>;
+  twitter?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomepageMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  heroTitle?: InputMaybe<Scalars['String']['input']>;
+  heroSubtitle?: InputMaybe<Scalars['String']['input']>;
+  heroDescription?: InputMaybe<Scalars['String']['input']>;
+  profileImage?: InputMaybe<Scalars['String']['input']>;
+  ideasExploring?: InputMaybe<Array<InputMaybe<HomepageIdeasExploringMutation>>>;
+  experienceHighlights?: InputMaybe<Array<InputMaybe<HomepageExperienceHighlightsMutation>>>;
+  socialLinks?: InputMaybe<HomepageSocialLinksMutation>;
 };
 
 export type ArticleMutation = {
@@ -505,11 +656,32 @@ export type ResourceMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type HomepagePartsFragment = { __typename: 'Homepage', title: string, heroTitle: string, heroSubtitle: string, heroDescription: string, profileImage?: string | null, ideasExploring?: Array<{ __typename: 'HomepageIdeasExploring', title: string, description?: string | null } | null> | null, experienceHighlights?: Array<{ __typename: 'HomepageExperienceHighlights', company: string, role: string, period?: string | null, description?: string | null, achievement?: string | null } | null> | null, socialLinks?: { __typename: 'HomepageSocialLinks', linkedin?: string | null, github?: string | null, twitter?: string | null } | null };
+
 export type ArticlePartsFragment = { __typename: 'Article', title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null };
 
 export type ProjectPartsFragment = { __typename: 'Project', title: string, date: string, company?: string | null, role?: string | null, duration?: string | null, category?: string | null, tags?: Array<string | null> | null, featured?: boolean | null, published?: boolean | null, excerpt?: string | null, image?: string | null, technologies?: Array<string | null> | null, body?: any | null, impact?: { __typename: 'ProjectImpact', revenue?: string | null, users?: string | null, efficiency?: string | null } | null };
 
 export type ResourcePartsFragment = { __typename: 'Resource', title: string, date: string, category?: string | null, published?: boolean | null, excerpt?: string | null, body?: any | null };
+
+export type HomepageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type HomepageQuery = { __typename?: 'Query', homepage: { __typename: 'Homepage', id: string, title: string, heroTitle: string, heroSubtitle: string, heroDescription: string, profileImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, ideasExploring?: Array<{ __typename: 'HomepageIdeasExploring', title: string, description?: string | null } | null> | null, experienceHighlights?: Array<{ __typename: 'HomepageExperienceHighlights', company: string, role: string, period?: string | null, description?: string | null, achievement?: string | null } | null> | null, socialLinks?: { __typename: 'HomepageSocialLinks', linkedin?: string | null, github?: string | null, twitter?: string | null } | null } };
+
+export type HomepageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HomepageFilter>;
+}>;
+
+
+export type HomepageConnectionQuery = { __typename?: 'Query', homepageConnection: { __typename?: 'HomepageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomepageConnectionEdges', cursor: string, node?: { __typename: 'Homepage', id: string, title: string, heroTitle: string, heroSubtitle: string, heroDescription: string, profileImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, ideasExploring?: Array<{ __typename: 'HomepageIdeasExploring', title: string, description?: string | null } | null> | null, experienceHighlights?: Array<{ __typename: 'HomepageExperienceHighlights', company: string, role: string, period?: string | null, description?: string | null, achievement?: string | null } | null> | null, socialLinks?: { __typename: 'HomepageSocialLinks', linkedin?: string | null, github?: string | null, twitter?: string | null } | null } | null } | null> | null } };
 
 export type ArticleQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -568,6 +740,35 @@ export type ResourceConnectionQueryVariables = Exact<{
 
 export type ResourceConnectionQuery = { __typename?: 'Query', resourceConnection: { __typename?: 'ResourceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ResourceConnectionEdges', cursor: string, node?: { __typename: 'Resource', id: string, title: string, date: string, category?: string | null, published?: boolean | null, excerpt?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export const HomepagePartsFragmentDoc = gql`
+    fragment HomepageParts on Homepage {
+  __typename
+  title
+  heroTitle
+  heroSubtitle
+  heroDescription
+  profileImage
+  ideasExploring {
+    __typename
+    title
+    description
+  }
+  experienceHighlights {
+    __typename
+    company
+    role
+    period
+    description
+    achievement
+  }
+  socialLinks {
+    __typename
+    linkedin
+    github
+    twitter
+  }
+}
+    `;
 export const ArticlePartsFragmentDoc = gql`
     fragment ArticleParts on Article {
   __typename
@@ -616,6 +817,63 @@ export const ResourcePartsFragmentDoc = gql`
   body
 }
     `;
+export const HomepageDocument = gql`
+    query homepage($relativePath: String!) {
+  homepage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...HomepageParts
+  }
+}
+    ${HomepagePartsFragmentDoc}`;
+export const HomepageConnectionDocument = gql`
+    query homepageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HomepageFilter) {
+  homepageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...HomepageParts
+      }
+    }
+  }
+}
+    ${HomepagePartsFragmentDoc}`;
 export const ArticleDocument = gql`
     query article($relativePath: String!) {
   article(relativePath: $relativePath) {
@@ -790,7 +1048,13 @@ export const ResourceConnectionDocument = gql`
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
-      article(variables: ArticleQueryVariables, options?: C): Promise<{data: ArticleQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ArticleQueryVariables, query: string}> {
+      homepage(variables: HomepageQueryVariables, options?: C): Promise<{data: HomepageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomepageQueryVariables, query: string}> {
+        return requester<{data: HomepageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomepageQueryVariables, query: string}, HomepageQueryVariables>(HomepageDocument, variables, options);
+      },
+    homepageConnection(variables?: HomepageConnectionQueryVariables, options?: C): Promise<{data: HomepageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomepageConnectionQueryVariables, query: string}> {
+        return requester<{data: HomepageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomepageConnectionQueryVariables, query: string}, HomepageConnectionQueryVariables>(HomepageConnectionDocument, variables, options);
+      },
+    article(variables: ArticleQueryVariables, options?: C): Promise<{data: ArticleQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ArticleQueryVariables, query: string}> {
         return requester<{data: ArticleQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ArticleQueryVariables, query: string}, ArticleQueryVariables>(ArticleDocument, variables, options);
       },
     articleConnection(variables?: ArticleConnectionQueryVariables, options?: C): Promise<{data: ArticleConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ArticleConnectionQueryVariables, query: string}> {
@@ -855,7 +1119,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/1.6/content/56e1e2ee-3f59-4dfb-bfdc-cd092e5c49dc/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

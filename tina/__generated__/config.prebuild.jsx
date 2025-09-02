@@ -20,6 +20,138 @@ var config_default = defineConfig({
   schema: {
     collections: [
       {
+        name: "homepage",
+        label: "Homepage",
+        path: "content/pages",
+        format: "md",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
+        match: {
+          include: "homepage"
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            required: true
+          },
+          {
+            type: "string",
+            name: "heroTitle",
+            label: "Hero Title",
+            required: true
+          },
+          {
+            type: "string",
+            name: "heroSubtitle",
+            label: "Hero Subtitle",
+            required: true
+          },
+          {
+            type: "string",
+            name: "heroDescription",
+            label: "Hero Description",
+            ui: {
+              component: "textarea"
+            },
+            required: true
+          },
+          {
+            type: "image",
+            name: "profileImage",
+            label: "Profile Image",
+            description: "Upload your profile photo (will be cropped to circle)"
+          },
+          {
+            type: "object",
+            name: "ideasExploring",
+            label: "Ideas I'm Exploring",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Idea Title",
+                required: true
+              },
+              {
+                type: "string",
+                name: "description",
+                label: "Description",
+                ui: {
+                  component: "textarea"
+                }
+              }
+            ]
+          },
+          {
+            type: "object",
+            name: "experienceHighlights",
+            label: "Experience Highlights",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "company",
+                label: "Company",
+                required: true
+              },
+              {
+                type: "string",
+                name: "role",
+                label: "Role",
+                required: true
+              },
+              {
+                type: "string",
+                name: "period",
+                label: "Time Period"
+              },
+              {
+                type: "string",
+                name: "description",
+                label: "Description",
+                ui: {
+                  component: "textarea"
+                }
+              },
+              {
+                type: "string",
+                name: "achievement",
+                label: "Key Achievement"
+              }
+            ]
+          },
+          {
+            type: "object",
+            name: "socialLinks",
+            label: "Social Links",
+            fields: [
+              {
+                type: "string",
+                name: "linkedin",
+                label: "LinkedIn URL"
+              },
+              {
+                type: "string",
+                name: "github",
+                label: "GitHub URL"
+              },
+              {
+                type: "string",
+                name: "twitter",
+                label: "Twitter/X URL"
+              }
+            ]
+          }
+        ]
+      },
+      {
         name: "article",
         label: "Articles",
         path: "content/articles",

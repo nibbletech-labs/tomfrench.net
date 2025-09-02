@@ -1,3 +1,31 @@
+fragment HomepageParts on Homepage {
+  __typename
+  title
+  heroTitle
+  heroSubtitle
+  heroDescription
+  profileImage
+  ideasExploring {
+    __typename
+    title
+    description
+  }
+  experienceHighlights {
+    __typename
+    company
+    role
+    period
+    description
+    achievement
+  }
+  socialLinks {
+    __typename
+    linkedin
+    github
+    twitter
+  }
+}
+
 fragment ArticleParts on Article {
   __typename
   title
