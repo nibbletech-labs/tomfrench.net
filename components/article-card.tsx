@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { type Article } from '@/lib/obsidian'
+import { type Article } from '@/lib/content'
 
 export function ArticleCard({ article }: { article: Article }) {
   return (
