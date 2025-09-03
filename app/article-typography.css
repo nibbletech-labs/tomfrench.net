@@ -57,15 +57,16 @@
   padding-left: 0.5rem;
 }
 
-/* Custom arrow bullets for unordered lists */
+/* Custom pink bullets for unordered lists */
 .article-content ul li::before {
-  content: '→';
+  content: '';
   position: absolute;
-  left: -1.5rem;
-  color: var(--article-bullet-color);
-  font-weight: 500;
-  font-size: 1em;
-  line-height: inherit;
+  left: -1.25rem;
+  top: 0.65em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--article-bullet-color);
 }
 
 /* Numbered lists with colored numbers */
@@ -185,7 +186,7 @@
   --article-h2-color: #0969da;
   --article-h3-color: #1f2937;
   --article-text: #374151;
-  --article-bullet-color: #f59e0b;
+  --article-bullet-color: #ec4899; /* Pink instead of orange */
   --article-link: #0969da;
   --article-link-underline: rgba(9, 105, 218, 0.3);
   --article-link-hover: #0860ca;
@@ -204,7 +205,7 @@
   --article-h2-color: #7dd3fc;
   --article-h3-color: #e2e8f0;
   --article-text: #cbd5e1;
-  --article-bullet-color: #fbbf24;
+  --article-bullet-color: #f472b6; /* Pink instead of orange */
   --article-link: #7dd3fc;
   --article-link-underline: rgba(125, 211, 252, 0.3);
   --article-link-hover: #a5f3fc;

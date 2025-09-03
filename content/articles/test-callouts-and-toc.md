@@ -287,12 +287,12 @@ Let's wrap up with key best practices for implementing these features:
 Implementing callout boxes and table of contents transforms documentation from a necessary evil into a delightful resource that developers actually want to read.
 
 :::tip[Implementation Checklist]
-✅ Add `showTableOfContents` field to your CMS schema
-✅ Implement markdown processing for callouts
-✅ Create responsive table of contents component
-✅ Style callouts for brand consistency
-✅ Test on mobile devices
-✅ Verify accessibility compliance
+- ✅ Add `showTableOfContents` field to your CMS schema
+- ✅ Implement markdown processing for callouts
+- ✅ Create responsive table of contents component
+- ✅ Style callouts for brand consistency
+- ✅ Test on mobile devices
+- ✅ Verify accessibility compliance
 :::
 
 These features work together to create documentation that's not just informative, but genuinely helpful and enjoyable to use. By breaking up content with visual callouts and providing easy navigation, you're respecting your readers' time and attention—and they'll thank you for it.
