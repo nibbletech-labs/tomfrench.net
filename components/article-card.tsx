@@ -13,8 +13,8 @@ export function ArticleCard({ article, index = 0 }: { article: Article, index?: 
   const accent = accents[index % accents.length];
   
   return (
-    <article className="group">
-      <Link href={`/articles/${article.slug}`} className={`block rounded-l-sm rounded-r-2xl border-l-4 ${accent.border} pl-6 pr-6 py-6 transition-all ${accent.hover} hover:shadow-lg`}>
+    <article className={`group rounded-l-sm rounded-r-2xl border-l-4 ${accent.border} pl-6 pr-6 py-6 transition-all ${accent.hover} hover:shadow-lg`}>
+      <Link href={`/articles/${article.slug}`} className="block">
         <time className="text-sm font-medium text-muted">
           {new Date(article.date).toLocaleDateString('en-US', {
             month: 'long',
@@ -28,24 +28,23 @@ export function ArticleCard({ article, index = 0 }: { article: Article, index?: 
         <p className="mt-3 line-clamp-3 text-secondary">
           {article.excerpt}
         </p>
-        {article.tags && article.tags.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {article.tags.slice(0, 3).map((tag) => (
-              <Link
-                key={tag}
-                href={`/articles/tags/${encodeURIComponent(tag)}`}
-                className="tag-base tag-gradient hover:shadow-md"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        )}
         <div className="mt-4 text-sm font-medium" style={{color: 'var(--accent-blue)'}}>
           Read more →
         </div>
       </Link>
+      {article.tags && article.tags.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {article.tags.slice(0, 3).map((tag) => (
+            <Link
+              key={tag}
+              href={`/articles/tags/${encodeURIComponent(tag)}`}
+              className="tag-base tag-gradient hover:shadow-md relative z-10"
+            >
+              {tag}
+            </Link>
+          ))}
+        </div>
+      )}
     </article>
   )
 }
