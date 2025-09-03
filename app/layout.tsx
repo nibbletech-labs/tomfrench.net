@@ -6,6 +6,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { Navigation } from '@/components/navigation'
 import { HomeLogo } from '@/components/home-logo'
 import { HoldingPage } from '@/components/holding-page'
+import { ScrollNavBackground } from '@/components/scroll-nav-background'
 import './globals.css'
 import '../styles/callouts.css'
 import './article-typography.css'
@@ -52,7 +53,9 @@ export default function RootLayout({
             <div className="flex min-h-screen flex-col">
             {/* Modern Centered Navigation */}
             <header className="fixed left-0 right-0 top-0 z-50">
-              <nav className="mx-auto flex h-20 max-w-6xl items-center px-6">
+              {/* Dynamic background that appears on scroll */}
+              <ScrollNavBackground />
+              <nav className="mx-auto flex h-20 max-w-6xl items-center px-6 relative">
                 <div className="flex w-full items-center justify-between">
                   {/* Logo - now a circular TF button when not on homepage */}
                   <HomeLogo />
