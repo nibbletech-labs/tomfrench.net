@@ -3,13 +3,12 @@ title: Homepage
 heroTitle: 'Hi, I''m Tom'
 heroSubtitle: Chief Product Officer & Advisor
 heroDescription: >-
-  Transforming businesses through customer-centric product strategy and
-  high-performing teams. Currently Interim CPO & Advisor at Alfred. Previously CPO at Utility Warehouse (FTSE 250).
+  Transforming businesses through customer-centric product strategy and high-performing teams. 
 profileImage: /attachments/Me.png
 ideasExploring:
   - title: AI-Native Product Development
     description: How teams can integrate AI into every stage of the product lifecycle
-  - title: Remote Team Dynamics
+  - title: Cross Functional Product Discovery
     description: 'Building high-trust, high-performance distributed product teams'
   - title: Sustainable Growth Models
     description: Balancing rapid scaling with long-term organizational health
@@ -28,7 +27,7 @@ experienceHighlights:
   - company: Alfred
     role: Interim Chief Product Officer & Advisor
     period: Jan 2025 - Present
-    description: Game-changing multi-service utility company looking to shake up the industry
+    description: Game-changing multi-service utility company looking to shake up the industry,
     logo: '/attachments/alfred.png'
   - company: Utility Warehouse
     role: Chief Product Officer
@@ -43,16 +42,15 @@ experienceHighlights:
   - company: BrightSun
     role: Co-Founder & Product Lead
     period: Sep 2013 - Feb 2015
-    description: Automated lead-sourcing for the VC industry. VC-backed AI startup.
+    description: Aotomated lead-sourcing for the VC industry.VC-backed AI startup. 
     logo: ''
   - company: TIM
     role: Product & Strategy Director
     period: Jan 2012 - Aug 2013
-    description: Led product strategy for B2B financial software serving Goldman Sachs, Barclays and BlackRock. Created innovation function generating £2M revenue.
+    description: B2B SaaS and Managed Service organisation offering data and communication tools for Equity sales teams and Institutional Investors
     logo: ''
 socialLinks:
   linkedin: 'https://www.linkedin.com/in/tom-french-9386907/'
   github: 'https://github.com/thfrench'
-  twitter: 'https://twitter.com/tomfrench'
 ---
 

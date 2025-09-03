@@ -5,6 +5,7 @@ import { Providers } from './providers'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Navigation } from '@/components/navigation'
 import { HomeLogo } from '@/components/home-logo'
+import { HoldingPage } from '@/components/holding-page'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -34,20 +35,28 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Check if maintenance mode is enabled
+  const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true'
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <div className="flex min-h-screen flex-col">
-          {/* Modern Centered Navigation */}
-          <header className="fixed left-0 right-0 top-0 z-50 backdrop-blur-xl" style={{backgroundColor: 'color-mix(in srgb, var(--background) 80%, transparent)'}}>
-            <nav className="mx-auto flex h-20 max-w-6xl items-center px-6">
-              <div className="flex w-full items-center justify-between">
-                {/* Logo - now a circular TF button when not on homepage */}
-                <HomeLogo />
-                
-                {/* Center Navigation */}
-                <Navigation />
+          {isMaintenanceMode ? (
+            // Show holding page when in maintenance mode
+            <HoldingPage />
+          ) : (
+            // Normal site layout
+            <div className="flex min-h-screen flex-col">
+            {/* Modern Centered Navigation */}
+            <header className="fixed left-0 right-0 top-0 z-50 backdrop-blur-xl" style={{backgroundColor: 'color-mix(in srgb, var(--background) 80%, transparent)'}}>
+              <nav className="mx-auto flex h-20 max-w-6xl items-center px-6">
+                <div className="flex w-full items-center justify-between">
+                  {/* Logo - now a circular TF button when not on homepage */}
+                  <HomeLogo />
+                  
+                  {/* Center Navigation */}
+                  <Navigation />
                 
                 {/* Right side */}
                 <div className="flex items-center gap-4">
@@ -74,6 +83,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+          )}
         </Providers>
       </body>
     </html>

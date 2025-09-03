@@ -63,6 +63,14 @@
   /* Interactive states - calculated */
   --hover-bg: hsl(var(--hue-neutral) var(--sat-low) var(--light-100));
   --active-bg: hsl(var(--hue-neutral) var(--sat-low) var(--light-200));
+  
+  /* Section backgrounds */
+  --ideas-bg: hsl(var(--hue-neutral) 20% 97%); /* Light slate background */
+  
+  /* Tag colors */
+  --tag-bg: hsl(var(--hue-neutral) 20% 95%);
+  --tag-border: hsl(var(--hue-neutral) 20% 85%);
+  --tag-text: hsl(var(--hue-neutral) 20% 40%)
 }
 
 /* Dark theme variables - only adjusting lightness values */
@@ -103,6 +111,14 @@
   /* Interactive states - darker background variations */
   --hover-bg: hsl(var(--hue-neutral) var(--sat-low) var(--light-700));
   --active-bg: hsl(var(--hue-neutral) var(--sat-low) var(--light-600));
+  
+  /* Section backgrounds */
+  --ideas-bg: hsl(var(--hue-neutral) 20% 10%); /* Dark slate background - slate-900 equivalent */
+  
+  /* Tag colors - same in dark mode for consistency */
+  --tag-bg: hsl(var(--hue-neutral) 20% 15%);
+  --tag-border: hsl(var(--hue-neutral) 20% 25%);
+  --tag-text: hsl(var(--hue-neutral) 20% 65%)
 }
 
 @theme inline {
@@ -241,14 +257,17 @@ body {
 }
 
 .tag-standard {
-  background-color: var(--muted);
-  color: var(--text-secondary);
-  border-color: var(--border);
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  border-color: var(--tag-border);
+  border-width: 1px;
+  border-style: solid;
 }
 
 .tag-standard:hover {
-  background-color: color-mix(in srgb, var(--accent-secondary-hover) 10%, var(--muted));
-  color: var(--accent-secondary-hover);
+  background-color: var(--tag-bg);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
 }
 
 /* Status Badge Classes */

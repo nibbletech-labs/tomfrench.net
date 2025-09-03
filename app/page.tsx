@@ -226,115 +226,113 @@ export default async function HomePage() {
       {/* Ideas Section - Above Experience */}
       <section className="mb-12">
         <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Ideas I'm exploring</h2>
-        {homepage.ideasExploring && homepage.ideasExploring.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2">
-            {homepage.ideasExploring.map((area, index) => {
-              const colors = ['bg-blue-500', 'bg-purple-500', 'bg-green-500', 'bg-orange-500', 'bg-teal-500', 'bg-pink-500'];
-              return (
-                <div key={index} className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className={`mt-1 h-2 w-2 rounded-full ${colors[index % colors.length]}`}></div>
+        <div className="gradient-brand p-[2px] rounded-2xl">
+          <div className="rounded-2xl p-6" style={{backgroundColor: 'var(--ideas-bg)'}}>
+            {homepage.ideasExploring && homepage.ideasExploring.length > 0 ? (
+              <div className="grid gap-6 md:grid-cols-2">
+                {homepage.ideasExploring.map((area, index) => {
+                  const colors = ['bg-blue-500', 'bg-purple-500', 'bg-green-500', 'bg-orange-500', 'bg-teal-500', 'bg-pink-500'];
+                  return (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className={`mt-1 h-2 w-2 rounded-full ${colors[index % colors.length]}`}></div>
+                      <div>
+                        <h3 className="mb-1 text-lg font-semibold">{area.title}</h3>
+                        {area.description && (
+                          <p className="text-sm text-secondary">{area.description}</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-blue-500"></div>
                   <div>
-                    <h3 className="mb-1 text-lg font-semibold">{area.title}</h3>
-                    {area.description && (
-                      <p className="text-sm text-secondary">{area.description}</p>
+                    <h3 className="mb-1 text-lg font-semibold">AI-Native Product Development</h3>
+                    <p className="text-sm text-secondary">How teams can integrate AI into every stage of the product lifecycle</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-purple-500"></div>
+                  <div>
+                    <h3 className="mb-1 text-lg font-semibold">Remote Team Dynamics</h3>
+                    <p className="text-sm text-secondary">Building high-trust, high-performance distributed product teams</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-green-500"></div>
+                  <div>
+                    <h3 className="mb-1 text-lg font-semibold">Sustainable Growth Models</h3>
+                    <p className="text-sm text-secondary">Balancing rapid scaling with long-term organizational health</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-orange-500"></div>
+                  <div>
+                    <h3 className="mb-1 text-lg font-semibold">Data-Driven Decision Making</h3>
+                    <p className="text-sm text-secondary">Moving beyond vanity metrics to actionable product insights</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-teal-500"></div>
+                  <div>
+                    <h3 className="mb-1 text-lg font-semibold">Customer-Centric Innovation</h3>
+                    <p className="text-sm text-secondary">Systematic approaches to understanding and solving real customer problems</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-pink-500"></div>
+                  <div>
+                    <h3 className="mb-1 text-lg font-semibold">Platform Strategy</h3>
+                    <p className="text-sm text-secondary">Building scalable product platforms that enable rapid feature development</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Grid - 2 Columns */}
+      <section className="mb-12">
+        <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Experience highlights</h2>
+        {homepage.experienceHighlights && homepage.experienceHighlights.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            {homepage.experienceHighlights.map((exp, index) => {
+              const colors = ['bg-blue-500', 'bg-purple-500', 'bg-emerald-500', 'bg-orange-500', 'bg-pink-500', 'bg-teal-500'];
+              return (
+                <div key={index} className="flex gap-4">
+                  {/* Logo or colored square */}
+                  <div className="flex-shrink-0">
+                    {exp.logo ? (
+                      <img 
+                        src={exp.logo} 
+                        alt={exp.company}
+                        className="h-12 w-12 rounded-lg object-cover"
+                      />
+                    ) : (
+                      <div className={`h-12 w-12 rounded-lg ${colors[index % colors.length]}`}></div>
+                    )}
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold">{exp.role}</h3>
+                    <p className="text-sm text-muted">{exp.company} {exp.period && `• ${exp.period}`}</p>
+                    {exp.description && (
+                      <p className="mt-2 text-sm text-secondary">{exp.description}</p>
                     )}
                   </div>
                 </div>
               );
             })}
-          </div>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="flex items-start gap-4 rounded-2xl p-2">
-              <div className="mt-1 h-2 w-2 rounded-full bg-blue-500"></div>
-              <div>
-                <h3 className="mb-1 text-lg font-semibold">AI-Native Product Development</h3>
-                <p className="text-sm text-secondary">How teams can integrate AI into every stage of the product lifecycle</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 rounded-2xl p-2">
-              <div className="mt-1 h-2 w-2 rounded-full bg-purple-500"></div>
-              <div>
-                <h3 className="mb-1 text-lg font-semibold">Remote Team Dynamics</h3>
-                <p className="text-sm text-secondary">Building high-trust, high-performance distributed product teams</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 rounded-2xl p-2">
-              <div className="mt-1 h-2 w-2 rounded-full bg-green-500"></div>
-              <div>
-                <h3 className="mb-1 text-lg font-semibold">Sustainable Growth Models</h3>
-                <p className="text-sm text-secondary">Balancing rapid scaling with long-term organizational health</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 rounded-2xl p-2">
-              <div className="mt-1 h-2 w-2 rounded-full bg-orange-500"></div>
-              <div>
-                <h3 className="mb-1 text-lg font-semibold">Data-Driven Decision Making</h3>
-                <p className="text-sm text-secondary">Moving beyond vanity metrics to actionable product insights</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 rounded-2xl p-2">
-              <div className="mt-1 h-2 w-2 rounded-full bg-teal-500"></div>
-              <div>
-                <h3 className="mb-1 text-lg font-semibold">Customer-Centric Innovation</h3>
-                <p className="text-sm text-secondary">Systematic approaches to understanding and solving real customer problems</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 rounded-2xl p-2">
-              <div className="mt-1 h-2 w-2 rounded-full bg-pink-500"></div>
-              <div>
-                <h3 className="mb-1 text-lg font-semibold">Platform Strategy</h3>
-                <p className="text-sm text-secondary">Building scalable product platforms that enable rapid feature development</p>
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* Experience Timeline - Full Width */}
-      <section className="mb-12">
-        <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Experience highlights</h2>
-        {homepage.experienceHighlights && homepage.experienceHighlights.length > 0 ? (
-          <div className="relative">
-            {/* Vertical gradient line */}
-            <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 via-emerald-500 via-orange-500 via-pink-500 to-teal-500"></div>
-            
-            {/* Timeline entries */}
-            <div className="space-y-8">
-              {homepage.experienceHighlights.map((exp, index) => {
-                const colors = ['bg-blue-500', 'bg-purple-500', 'bg-emerald-500', 'bg-orange-500', 'bg-pink-500', 'bg-teal-500'];
-                return (
-                  <div key={index} className="relative pl-14">
-                    {/* Logo or colored square */}
-                    <div className="absolute left-0 -translate-x-0">
-                      {exp.logo ? (
-                        <img 
-                          src={exp.logo} 
-                          alt={exp.company}
-                          className="h-10 w-10 rounded-lg object-cover"
-                        />
-                      ) : (
-                        <div className={`h-10 w-10 rounded-lg ${colors[index % colors.length]}`}></div>
-                      )}
-                    </div>
-                    
-                    {/* Content */}
-                    <div>
-                      <h3 className="text-lg font-semibold">{exp.role}</h3>
-                      <p className="text-sm text-muted">{exp.company} {exp.period && `• ${exp.period}`}</p>
-                      {exp.description && (
-                        <p className="mt-2 text-secondary">{exp.description}</p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         ) : (
           <div className="space-y-8">
