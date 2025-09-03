@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
 import { Providers } from './providers'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Navigation } from '@/components/navigation'
@@ -64,10 +63,7 @@ export default function RootLayout({
                   <Navigation />
                 
                 {/* Right side */}
-                <div className="flex items-center gap-4">
-                  <Link href="/contact" className="btn-primary text-sm">
-                    Contact
-                  </Link>
+                <div className="flex items-center">
                   <ThemeToggle />
                 </div>
               </div>
