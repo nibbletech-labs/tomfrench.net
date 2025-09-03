@@ -82,12 +82,24 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   className={`
                     block py-1 leading-relaxed
                     transition-all duration-200
-                    ${isActive 
-                      ? 'text-blue-600 dark:text-blue-400 font-medium' 
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-                    }
-                    ${isH3 ? 'text-[0.8125rem]' : 'text-sm'}
+                    ${isActive ? 'font-medium' : ''}
+                    ${isH3 ? 'text-xs' : 'text-sm'}
                   `}
+                  style={{
+                    color: isActive 
+                      ? 'var(--toc-text-active)' 
+                      : 'var(--toc-text-inactive)'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = 'var(--toc-text-hover)'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = 'var(--toc-text-inactive)'
+                    }
+                  }}
                 >
                   {heading.text}
                 </a>

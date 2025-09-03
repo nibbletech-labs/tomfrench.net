@@ -77,7 +77,12 @@
   
   /* Article surface colors for callouts */
   --surface-article: #ffffff;
-  --text-article: #0b0b0b
+  --text-article: #0b0b0b;
+  
+  /* Table of Contents colors */
+  --toc-text-active: hsl(var(--hue-primary) var(--sat-high) var(--light-600));
+  --toc-text-inactive: hsl(var(--hue-neutral) 10% 25%);
+  --toc-text-hover: hsl(var(--hue-neutral) 10% 15%)
 }
 
 /* Dark theme variables - only adjusting lightness values */
@@ -132,7 +137,12 @@
   --text-article: #e7e7ea;
   
   /* Text tertiary for subtle labels */
-  --text-tertiary: hsl(var(--hue-neutral) 10% 45%)
+  --text-tertiary: hsl(var(--hue-neutral) 10% 45%);
+  
+  /* Table of Contents colors - dark mode */
+  --toc-text-active: hsl(var(--hue-primary) var(--sat-high) var(--light-400));
+  --toc-text-inactive: hsl(var(--hue-neutral) 10% 75%);
+  --toc-text-hover: hsl(var(--hue-neutral) 10% 85%)
 }
 
 @theme inline {

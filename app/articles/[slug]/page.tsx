@@ -20,25 +20,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <article className="min-h-screen">
-      {/* Back navigation bar */}
-      <div className="border-b" style={{borderColor: 'var(--border)'}}>
-        <div className="mx-auto max-w-5xl px-6 py-4">
-          <Link 
-            href="/articles"
-            className="inline-flex items-center gap-2 text-sm font-medium transition-all opacity-70 hover:opacity-100"
-            style={{color: 'var(--text-primary)'}}
-          >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to articles
-          </Link>
-        </div>
-      </div>
-      
-      {/* Article Header - Separate from content */}
+      {/* Article Header */}
       <div className="mx-auto max-w-5xl px-6">
-        <header className="py-12 border-b" style={{borderColor: 'var(--border)'}}>
+        <header className="py-12">
           {/* Article metadata */}
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
@@ -48,43 +32,28 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 day: 'numeric' 
               })}
             </time>
-            {article.readingTime && (
-              <>
-                <span style={{color: 'var(--text-tertiary)'}}>•</span>
-                <span className="font-medium" style={{color: 'var(--text-secondary)'}}>
-                  {article.readingTime}
-                </span>
-              </>
-            )}
             {article.category && (
               <>
                 <span style={{color: 'var(--text-tertiary)'}}>•</span>
-                <span className="px-2 py-1 text-xs rounded-full font-medium" style={{
-                  background: 'var(--tag-bg)',
-                  color: 'var(--tag-text)',
-                  border: '1px solid var(--tag-border)'
-                }}>
+                <Link
+                  href={`/articles/category/${encodeURIComponent(article.category.toLowerCase())}`}
+                  className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105" 
+                  style={{
+                    background: 'var(--tag-bg)',
+                    color: 'var(--tag-text)',
+                    border: '1px solid var(--tag-border)'
+                  }}
+                >
                   {article.category}
-                </span>
+                </Link>
               </>
             )}
           </div>
           
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary">
             {article.title}
           </h1>
-          
-          {/* Author info */}
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-brand text-white font-bold">
-              TF
-            </div>
-            <div>
-              <div className="font-medium text-primary">Tom French</div>
-              <div className="text-sm" style={{color: 'var(--text-secondary)'}}>Chief Product Officer</div>
-            </div>
-          </div>
         </header>
       </div>
 
@@ -111,7 +80,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             {/* Tags section */}
             {article.tags && article.tags.length > 0 && (
-              <div className="mt-16 pt-8 border-t" style={{borderColor: 'var(--border)'}}>
+              <div className="mt-16 pt-8">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider" style={{color: 'var(--text-secondary)'}}>
                   Tagged with
                 </h3>
