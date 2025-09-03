@@ -17,8 +17,8 @@ export function ScrollNavBackground() {
         const hasTableOfContents = document.querySelector('aside nav') !== null
         
         if (!hasTableOfContents) {
-          // Centered articles with compact waves (350px height, curves at ~140-200px)
-          threshold = 180
+          // Centered articles with compact waves (350px height, curves now at ~80-120px)
+          threshold = 120
         } else {
           // Articles with ToC have regular waves (450px)
           threshold = 350
