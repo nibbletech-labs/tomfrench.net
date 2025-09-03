@@ -30,32 +30,34 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {/* Article Header - above waves with z-index */}
       <div className={`mx-auto px-6 relative z-10 ${hasTableOfContents ? 'max-w-5xl' : 'max-w-3xl'}`}>
         <header className={`${hasTableOfContents ? 'pt-10 pb-32' : 'pt-40 pb-20 text-center'}`}>
-          {/* Article metadata */}
-          <div className={`mb-6 text-sm ${hasTableOfContents ? 'flex flex-wrap items-center gap-2' : 'flex flex-wrap items-center justify-center gap-2'}`}>
-            <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
-              {new Date(article.date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </time>
-            {article.category && (
-              <>
-                <span style={{color: 'var(--text-tertiary)'}}>•</span>
-                <Link
-                  href={`/articles/category/${encodeURIComponent(article.category.toLowerCase())}`}
-                  className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105" 
-                  style={{
-                    background: 'var(--tag-bg)',
-                    color: 'var(--tag-text)',
-                    border: '1px solid var(--tag-border)'
-                  }}
-                >
-                  {article.category}
-                </Link>
-              </>
-            )}
-          </div>
+          {/* Article metadata - for articles WITH ToC */}
+          {hasTableOfContents && (
+            <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
+              <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
+                {new Date(article.date).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </time>
+              {article.category && (
+                <>
+                  <span style={{color: 'var(--text-tertiary)'}}>•</span>
+                  <Link
+                    href={`/articles/category/${encodeURIComponent(article.category.toLowerCase())}`}
+                    className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105" 
+                    style={{
+                      background: 'var(--tag-bg)',
+                      color: 'var(--tag-text)',
+                      border: '1px solid var(--tag-border)'
+                    }}
+                  >
+                    {article.category}
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
           
           {/* Title */}
           <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary">
@@ -67,6 +69,35 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <p className="mt-6 text-lg text-secondary max-w-2xl mx-auto">
               {article.excerpt}
             </p>
+          )}
+          
+          {/* Article metadata - for centered articles BELOW excerpt */}
+          {!hasTableOfContents && (
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm">
+              <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
+                {new Date(article.date).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </time>
+              {article.category && (
+                <>
+                  <span style={{color: 'var(--text-tertiary)'}}>•</span>
+                  <Link
+                    href={`/articles/category/${encodeURIComponent(article.category.toLowerCase())}`}
+                    className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105" 
+                    style={{
+                      background: 'var(--tag-bg)',
+                      color: 'var(--tag-text)',
+                      border: '1px solid var(--tag-border)'
+                    }}
+                  >
+                    {article.category}
+                  </Link>
+                </>
+              )}
+            </div>
           )}
         </header>
       </div>

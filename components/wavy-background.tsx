@@ -15,12 +15,14 @@ export function WavyBackground({ variant = 'default' }: { variant?: 'default' | 
   }
   
   return (
-    <div className={`absolute top-0 left-0 right-0 pointer-events-none`} style={{ height: `${height}px`, zIndex: -1 }}>
-      {/* Layer 1 - Back layer, purple */}
-      <svg
-        className="absolute top-0 left-0 w-full h-full"
-        viewBox={viewBox}
-        preserveAspectRatio="none"
+    <div className={`absolute top-0 left-0 right-0 pointer-events-none overflow-hidden`} style={{ height: `${height}px`, zIndex: -1 }}>
+      {/* Inner container with fixed width */}
+      <div className="absolute left-1/2 -translate-x-1/2 h-full" style={{ width: '1440px' }}>
+        {/* Layer 1 - Back layer, purple */}
+        <svg
+          className="absolute top-0 left-0 w-full h-full"
+          viewBox={viewBox}
+          preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-to)"
@@ -54,6 +56,7 @@ export function WavyBackground({ variant = 'default' }: { variant?: 'default' | 
           d={paths.front}
         />
       </svg>
+      </div>
     </div>
   )
 }
