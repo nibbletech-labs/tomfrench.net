@@ -26,7 +26,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       
       {/* Article Header */}
       <div className="mx-auto max-w-5xl px-6 relative">
-        <header className="py-12">
+        <header className="pt-12 pb-20">
           {/* Article metadata */}
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>

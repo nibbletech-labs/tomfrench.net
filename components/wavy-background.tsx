@@ -1,42 +1,48 @@
 export function WavyBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Top wave - using brand gradient colors */}
+      {/* Layer 1 - Furthest back, teal/cyan */}
       <svg
-        className="absolute top-0 left-0 w-full opacity-30 dark:opacity-20"
-        viewBox="0 0 1440 320"
+        className="absolute -top-20 left-0 w-full opacity-10 dark:opacity-5"
+        viewBox="0 0 1440 560"
         preserveAspectRatio="none"
-        style={{ height: '40vh' }}
+        style={{ height: '70vh' }}
+      >
+        <path
+          fill="var(--gradient-from)"
+          d="M0,320 C320,400 640,360 960,380 C1280,400 1440,350 1440,350 L1440,0 L0,0 Z"
+        />
+      </svg>
+
+      {/* Layer 2 - Middle layer, blue */}
+      <svg
+        className="absolute -top-10 left-0 w-full opacity-15 dark:opacity-8"
+        viewBox="0 0 1440 480"
+        preserveAspectRatio="none"
+        style={{ height: '60vh' }}
+      >
+        <path
+          fill="var(--gradient-via)"
+          d="M0,280 C480,380 960,320 1440,360 L1440,0 L0,0 Z"
+        />
+      </svg>
+
+      {/* Layer 3 - Front layer, purple gradient */}
+      <svg
+        className="absolute top-0 left-0 w-full opacity-20 dark:opacity-10"
+        viewBox="0 0 1440 400"
+        preserveAspectRatio="none"
+        style={{ height: '50vh' }}
       >
         <defs>
-          <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: 'var(--gradient-from)' }} />
-            <stop offset="50%" style={{ stopColor: 'var(--gradient-via)' }} />
+          <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style={{ stopColor: 'var(--gradient-via)' }} />
             <stop offset="100%" style={{ stopColor: 'var(--gradient-to)' }} />
           </linearGradient>
         </defs>
         <path
-          fill="url(#wave-gradient-1)"
-          d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-        />
-      </svg>
-      
-      {/* Bottom wave - secondary gradient */}
-      <svg
-        className="absolute bottom-0 left-0 w-full opacity-20 dark:opacity-10"
-        viewBox="0 0 1440 320"
-        preserveAspectRatio="none"
-        style={{ height: '30vh' }}
-      >
-        <defs>
-          <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: 'var(--gradient-secondary-from)' }} />
-            <stop offset="100%" style={{ stopColor: 'var(--gradient-secondary-to)' }} />
-          </linearGradient>
-        </defs>
-        <path
-          fill="url(#wave-gradient-2)"
-          d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          fill="url(#purple-gradient)"
+          d="M0,240 C360,320 720,280 1080,300 C1260,310 1440,280 1440,280 L1440,0 L0,0 Z"
         />
       </svg>
     </div>
