@@ -34,10 +34,10 @@
   --card: hsl(0 0% 100%);
   --border: hsl(var(--hue-neutral) var(--sat-medium) var(--light-200));
   
-  /* Brand gradient colors - calculated from base hues */
-  --gradient-from: hsl(var(--hue-primary) var(--sat-high) var(--light-600));
-  --gradient-via: hsl(var(--hue-secondary) var(--sat-high) var(--light-600));
-  --gradient-to: hsl(var(--hue-tertiary) var(--sat-high) var(--light-600));
+  /* Brand gradient colors - using dark mode values for consistency */
+  --gradient-from: hsl(var(--hue-primary) var(--sat-high) var(--light-500));
+  --gradient-via: hsl(var(--hue-secondary) var(--sat-high) var(--light-400));
+  --gradient-to: hsl(var(--hue-tertiary) var(--sat-high) var(--light-500));
   
   /* Secondary gradients */
   --gradient-secondary-from: hsl(var(--hue-cyan) var(--sat-high) var(--light-500));
