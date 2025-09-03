@@ -1,17 +1,27 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export function ScrollNavBackground() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
-      // Add background when the main content reaches the nav bar
-      // This is roughly when the waves end and article content begins
-      // Nav is 80px (h-20), waves are 450px, header padding is 96px (pt-24)
-      // So trigger around 350-380px when content is about to go under nav
-      setIsScrolled(window.scrollY > 360)
+      // Different thresholds for different page types
+      let threshold = 50 // Default for most pages
+      
+      if (pathname?.startsWith('/articles/')) {
+        // Article pages with waves need higher threshold
+        // Waves are 450px, header padding is 80px (pt-20)
+        threshold = 350
+      } else if (pathname === '/') {
+        // Homepage might need different threshold
+        threshold = 100
+      }
+
+      setIsScrolled(window.scrollY > threshold)
     }
 
     // Check initial scroll position
@@ -19,7 +29,7 @@ export function ScrollNavBackground() {
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [pathname])
 
   return (
     <div 
