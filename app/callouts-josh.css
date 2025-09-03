@@ -1,0 +1,194 @@
+/* Callout Box Styles - Josh W. Comeau Exact Style */
+
+/* Base callout styling */
+.callout {
+  --aside-border-width: 3px;
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  margin-inline: calc(var(--viewport-padding, 2rem) * -1);
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  padding-right: var(--viewport-padding, 2rem);
+  padding-left: calc(var(--viewport-padding, 2rem) + 2.25rem);
+  border-left: var(--aside-border-width) solid var(--callout-border-color);
+  border-radius: 0 4px 4px 0;
+  font-size: 1rem;
+  background-color: var(--callout-bg);
+  transition: background-color 350ms;
+}
+
+/* Notch container for the SVG cutout */
+.callout-notch {
+  position: absolute;
+  left: -3px;
+  top: 1.25rem;
+  width: 28.5px;
+  height: 34.5px;
+  z-index: 2;
+}
+
+.callout-notch-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.callout-notch-svg path {
+  transition: fill 350ms;
+}
+
+/* Icon positioning */
+.callout-icon {
+  position: absolute;
+  left: calc(var(--viewport-padding, 2rem) - 1rem);
+  top: calc(1.25rem + 5px);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  background: var(--color-page-background, var(--background));
+  border-radius: 50%;
+}
+
+.callout-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--callout-icon-color);
+}
+
+/* Remove spacer - not needed with absolute positioning */
+.callout-spacer {
+  display: none;
+}
+
+/* Title styling */
+.callout-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--callout-title-color);
+  line-height: 1.5;
+}
+
+/* Content styling */
+.callout-content {
+  color: var(--article-text);
+  line-height: 1.7;
+  margin-top: 0.25rem;
+}
+
+.callout-content p {
+  margin: 0;
+}
+
+.callout-content p + p {
+  margin-top: 0.75rem;
+}
+
+.callout-content code {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+.dark .callout-content code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Color page background variable */
+:root {
+  --color-page-background: #ffffff;
+  --viewport-padding: 2rem;
+}
+
+.dark {
+  --color-page-background: #0f172a;
+}
+
+/* Info Callout */
+.callout-info {
+  --callout-bg: hsl(214deg 40% 92%);
+  --callout-border-color: hsl(225deg 100% 60%);
+  --callout-icon-color: hsl(225deg 100% 60%);
+  --callout-title-color: hsl(225deg 100% 40%);
+}
+
+.dark .callout-info {
+  --callout-bg: hsl(214deg 40% 15%);
+  --callout-border-color: hsl(225deg 100% 60%);
+  --callout-icon-color: hsl(225deg 100% 60%);
+  --callout-title-color: hsl(225deg 100% 75%);
+}
+
+/* Warning Callout */
+.callout-warning {
+  --callout-bg: hsl(39deg 100% 92%);
+  --callout-border-color: hsl(39deg 100% 50%);
+  --callout-icon-color: hsl(39deg 100% 50%);
+  --callout-title-color: hsl(39deg 100% 30%);
+}
+
+.dark .callout-warning {
+  --callout-bg: hsl(39deg 40% 15%);
+  --callout-border-color: hsl(39deg 100% 50%);
+  --callout-icon-color: hsl(39deg 100% 50%);
+  --callout-title-color: hsl(39deg 100% 70%);
+}
+
+/* Tip Callout */
+.callout-tip {
+  --callout-bg: hsl(150deg 50% 92%);
+  --callout-border-color: hsl(150deg 60% 45%);
+  --callout-icon-color: hsl(150deg 60% 45%);
+  --callout-title-color: hsl(150deg 60% 30%);
+}
+
+.dark .callout-tip {
+  --callout-bg: hsl(150deg 30% 15%);
+  --callout-border-color: hsl(150deg 60% 45%);
+  --callout-icon-color: hsl(150deg 60% 45%);
+  --callout-title-color: hsl(150deg 60% 70%);
+}
+
+/* Note Callout */
+.callout-note {
+  --callout-bg: hsl(270deg 50% 92%);
+  --callout-border-color: hsl(270deg 60% 55%);
+  --callout-icon-color: hsl(270deg 60% 55%);
+  --callout-title-color: hsl(270deg 60% 35%);
+}
+
+.dark .callout-note {
+  --callout-bg: hsl(270deg 30% 15%);
+  --callout-border-color: hsl(270deg 60% 55%);
+  --callout-icon-color: hsl(270deg 60% 55%);
+  --callout-title-color: hsl(270deg 60% 75%);
+}
+
+/* Caution Callout */
+.callout-caution {
+  --callout-bg: hsl(0deg 80% 92%);
+  --callout-border-color: hsl(0deg 70% 50%);
+  --callout-icon-color: hsl(0deg 70% 50%);
+  --callout-title-color: hsl(0deg 70% 35%);
+}
+
+.dark .callout-caution {
+  --callout-bg: hsl(0deg 40% 15%);
+  --callout-border-color: hsl(0deg 70% 50%);
+  --callout-icon-color: hsl(0deg 70% 50%);
+  --callout-title-color: hsl(0deg 70% 70%);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .callout {
+    margin-inline: 0;
+    border-radius: 0 4px 4px 0;
+  }
+}

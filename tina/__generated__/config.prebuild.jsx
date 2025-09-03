@@ -188,6 +188,12 @@ var config_default = defineConfig({
             label: "Published"
           },
           {
+            type: "boolean",
+            name: "showTableOfContents",
+            label: "Show Table of Contents",
+            description: "Display a table of contents for this article"
+          },
+          {
             type: "string",
             name: "excerpt",
             label: "Excerpt",

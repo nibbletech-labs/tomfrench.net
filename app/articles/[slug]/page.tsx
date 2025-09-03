@@ -1,6 +1,7 @@
 import { getArticle, getArticles } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import TableOfContents from '@/components/TableOfContents'
 
 export async function generateStaticParams() {
   const articles = await getArticles()
@@ -21,11 +22,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <article className="min-h-screen">
       {/* Back navigation bar */}
       <div className="border-b" style={{borderColor: 'var(--border)'}}>
-        <div className="mx-auto max-w-3xl px-6 py-4">
+        <div className="mx-auto max-w-5xl px-6 py-4">
           <Link 
             href="/articles"
-            className="inline-flex items-center gap-2 text-sm font-medium transition-colors"
-            style={{color: 'var(--text-secondary)'}}
+            className="inline-flex items-center gap-2 text-sm font-medium transition-all opacity-70 hover:opacity-100"
+            style={{color: 'var(--text-primary)'}}
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -35,12 +36,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
       
-      {/* Article content */}
-      <div className="mx-auto max-w-3xl px-6 py-12">
-        
-        <header className="mb-12">
+      {/* Article Header - Separate from content */}
+      <div className="mx-auto max-w-5xl px-6">
+        <header className="py-12 border-b" style={{borderColor: 'var(--border)'}}>
           {/* Article metadata */}
-          <div className="mb-6 flex flex-wrap items-center gap-3 text-sm">
+          <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
               {new Date(article.date).toLocaleDateString('en-US', { 
                 year: 'numeric', 
@@ -50,7 +50,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </time>
             {article.readingTime && (
               <>
-                <span className="text-muted">•</span>
+                <span style={{color: 'var(--text-tertiary)'}}>•</span>
                 <span className="font-medium" style={{color: 'var(--text-secondary)'}}>
                   {article.readingTime}
                 </span>
@@ -58,69 +58,90 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             )}
             {article.category && (
               <>
-                <span className="text-muted">•</span>
-                <span className="tag-base badge-category">
+                <span style={{color: 'var(--text-tertiary)'}}>•</span>
+                <span className="px-2 py-1 text-xs rounded-full font-medium" style={{
+                  background: 'var(--tag-bg)',
+                  color: 'var(--tag-text)',
+                  border: '1px solid var(--tag-border)'
+                }}>
                   {article.category}
                 </span>
               </>
             )}
           </div>
           
-          {/* Title with better typography */}
-          <h1 className="text-4xl font-bold leading-tight text-primary sm:text-5xl sm:leading-tight">
+          {/* Title */}
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary mb-6">
             {article.title}
           </h1>
           
-          {/* Author info (placeholder for now) */}
-          <div className="mt-6 flex items-center gap-3">
+          {/* Author info */}
+          <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-brand text-white font-bold">
               TF
             </div>
             <div>
               <div className="font-medium text-primary">Tom French</div>
-              <div className="text-sm text-muted">Chief Product Officer</div>
+              <div className="text-sm" style={{color: 'var(--text-secondary)'}}>Chief Product Officer</div>
             </div>
           </div>
         </header>
+      </div>
 
-        {article.featuredImage && (
-          <div className="-mx-6 mb-12 overflow-hidden sm:mx-0 sm:rounded-2xl">
-            <img 
-              src={article.featuredImage} 
-              alt={article.title}
-              className="w-full"
+      {/* Article Body with ToC */}
+      <div className="mx-auto max-w-5xl px-6 py-12">
+        <div className={`${article.showTableOfContents && article.headings && article.headings.length > 0 ? 'lg:grid lg:grid-cols-[1fr_280px] lg:gap-12' : ''}`}>
+          {/* Main Content */}
+          <div className="max-w-3xl">
+            {article.featuredImage && (
+              <div className="mb-12 overflow-hidden rounded-xl">
+                <img 
+                  src={article.featuredImage} 
+                  alt={article.title}
+                  className="w-full"
+                />
+              </div>
+            )}
+
+            {/* Article content with custom typography */}
+            <div 
+              className="article-content"
+              dangerouslySetInnerHTML={{ __html: article.htmlContent || '' }}
             />
+
+            {/* Tags section */}
+            {article.tags && article.tags.length > 0 && (
+              <div className="mt-16 pt-8 border-t" style={{borderColor: 'var(--border)'}}>
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider" style={{color: 'var(--text-secondary)'}}>
+                  Tagged with
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {article.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/articles/tags/${encodeURIComponent(tag)}`}
+                      className="px-3 py-1 text-sm rounded-full transition-all hover:scale-105"
+                      style={{
+                        background: 'var(--tag-bg)',
+                        color: 'var(--tag-text)',
+                        border: '1px solid var(--tag-border)'
+                      }}
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        )}
-
-        {/* Article content with improved typography */}
-        <div 
-          className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-h2:mt-12 prose-h2:text-3xl prose-h3:mt-8 prose-h3:text-2xl prose-p:leading-relaxed prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic prose-code:rounded prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950"
-          dangerouslySetInnerHTML={{ __html: article.htmlContent || '' }}
-        />
-
-        {/* Tags section with better styling */}
-        {article.tags && article.tags.length > 0 && (
-          <div className="mt-16 border-t pt-8" style={{borderColor: 'var(--border)'}}>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider" style={{color: 'var(--text-secondary)'}}>
-              Tagged with
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map((tag) => (
-                <Link
-                  key={tag}
-                  href={`/articles/tags/${encodeURIComponent(tag)}`}
-                  className="tag-base tag-standard hover:border-blue-500 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400"
-                >
-                  {tag}
-                </Link>
-              ))}
+          
+          {/* Table of Contents - Aligned with content */}
+          {article.showTableOfContents && article.headings && article.headings.length > 0 && (
+            <div className="hidden lg:block">
+              <TableOfContents headings={article.headings} />
             </div>
-          </div>
-        )}
-        
-        {/* Bottom spacing */}
-        <div className="h-20" />
+          )}
+        </div>
       </div>
     </article>
   )

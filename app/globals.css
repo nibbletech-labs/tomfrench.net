@@ -70,7 +70,10 @@
   /* Tag colors */
   --tag-bg: hsl(var(--hue-neutral) 20% 95%);
   --tag-border: hsl(var(--hue-neutral) 20% 85%);
-  --tag-text: hsl(var(--hue-neutral) 20% 40%)
+  --tag-text: hsl(var(--hue-neutral) 20% 40%);
+  
+  /* Text tertiary for subtle labels */
+  --text-tertiary: hsl(var(--hue-neutral) 10% 55%)
 }
 
 /* Dark theme variables - only adjusting lightness values */
@@ -118,7 +121,10 @@
   /* Tag colors - same in dark mode for consistency */
   --tag-bg: hsl(var(--hue-neutral) 20% 15%);
   --tag-border: hsl(var(--hue-neutral) 20% 25%);
-  --tag-text: hsl(var(--hue-neutral) 20% 65%)
+  --tag-text: hsl(var(--hue-neutral) 20% 65%);
+  
+  /* Text tertiary for subtle labels */
+  --text-tertiary: hsl(var(--hue-neutral) 10% 45%)
 }
 
 @theme inline {
@@ -197,29 +203,25 @@ body {
 }
 
 .nav-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: var(--accent-secondary-hover);
-}
-
-.nav-link-active {
-  color: var(--accent-secondary);
+  color: var(--text-primary);
+  opacity: 0.65;
+  transition: all 0.2s ease;
+  font-weight: 500;
   position: relative;
 }
 
-.nav-link-active::after {
-  content: '';
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-via) 50%, var(--gradient-to) 100%);
-  border-radius: 1px;
+.nav-link:hover {
+  color: var(--text-primary);
+  opacity: 1;
 }
+
+.nav-link-active {
+  color: var(--text-primary);
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* Removed underline indicator for cleaner look */
 
 .border-custom {
   border-color: var(--border);

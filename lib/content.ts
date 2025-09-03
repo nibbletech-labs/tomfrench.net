@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import readingTime from 'reading-time'
+import { extractHeadings, processMarkdownWithEnhancements, TocHeading } from './markdown-utils'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -19,16 +20,15 @@ export interface ContentItem {
   published?: boolean
   readingTime?: string
   featuredImage?: string
+  showTableOfContents?: boolean
+  headings?: TocHeading[]
   [key: string]: any
 }
 
-// Process markdown content to HTML
+// Process markdown content to HTML (keeping for backward compatibility)
 export async function processMarkdownContent(content: string): Promise<string> {
-  const result = await remark()
-    .use(html)
-    .process(content)
-  
-  return result.toString()
+  // Use enhanced processing with callouts and heading IDs
+  return processMarkdownWithEnhancements(content)
 }
 
 // Get all content files from a directory
@@ -51,12 +51,14 @@ export async function getContentFromDirectory(directory: string): Promise<Conten
         const slug = file.replace(/\.(md|mdx)$/, '')
         const processedContent = await processMarkdownContent(content)
         const stats = readingTime(content)
+        const headings = extractHeadings(content)
         
         return {
           slug,
           content,
           htmlContent: processedContent,
           readingTime: stats.text,
+          headings,
           title: data.title || slug.replace(/-/g, ' '),
           date: data.date || new Date().toISOString(),
           excerpt: data.excerpt || content.slice(0, 200) + '...',
@@ -92,12 +94,14 @@ export async function getContentBySlug(
   const { data, content } = matter(fileContent)
   const processedContent = await processMarkdownContent(content)
   const stats = readingTime(content)
+  const headings = extractHeadings(content)
   
   return {
     slug,
     content,
     htmlContent: processedContent,
     readingTime: stats.text,
+    headings,
     title: data.title || slug.replace(/-/g, ' '),
     date: data.date || new Date().toISOString(),
     excerpt: data.excerpt || content.slice(0, 200) + '...',

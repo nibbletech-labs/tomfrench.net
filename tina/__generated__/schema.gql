@@ -190,6 +190,7 @@ type Article implements Node & Document {
   category: String
   tags: [String]
   published: Boolean
+  showTableOfContents: Boolean
   excerpt: String
   featuredImage: String
   body: JSON
@@ -223,6 +224,7 @@ input ArticleFilter {
   category: StringFilter
   tags: StringFilter
   published: BooleanFilter
+  showTableOfContents: BooleanFilter
   excerpt: StringFilter
   featuredImage: StringFilter
   body: RichTextFilter
@@ -398,6 +400,7 @@ input ArticleMutation {
   category: String
   tags: [String]
   published: Boolean
+  showTableOfContents: Boolean
   excerpt: String
   featuredImage: String
   body: JSON

@@ -320,6 +320,7 @@ export type Article = Node & Document & {
   category?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   published?: Maybe<Scalars['Boolean']['output']>;
+  showTableOfContents?: Maybe<Scalars['Boolean']['output']>;
   excerpt?: Maybe<Scalars['String']['output']>;
   featuredImage?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
@@ -353,6 +354,7 @@ export type ArticleFilter = {
   category?: InputMaybe<StringFilter>;
   tags?: InputMaybe<StringFilter>;
   published?: InputMaybe<BooleanFilter>;
+  showTableOfContents?: InputMaybe<BooleanFilter>;
   excerpt?: InputMaybe<StringFilter>;
   featuredImage?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
@@ -619,6 +621,7 @@ export type ArticleMutation = {
   category?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   published?: InputMaybe<Scalars['Boolean']['input']>;
+  showTableOfContents?: InputMaybe<Scalars['Boolean']['input']>;
   excerpt?: InputMaybe<Scalars['String']['input']>;
   featuredImage?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
@@ -658,7 +661,7 @@ export type ResourceMutation = {
 
 export type HomepagePartsFragment = { __typename: 'Homepage', title: string, heroTitle: string, heroSubtitle: string, heroDescription: string, profileImage?: string | null, ideasExploring?: Array<{ __typename: 'HomepageIdeasExploring', title: string, description?: string | null } | null> | null, experienceHighlights?: Array<{ __typename: 'HomepageExperienceHighlights', company: string, role: string, period?: string | null, description?: string | null, achievement?: string | null } | null> | null, socialLinks?: { __typename: 'HomepageSocialLinks', linkedin?: string | null, github?: string | null, twitter?: string | null } | null };
 
-export type ArticlePartsFragment = { __typename: 'Article', title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null };
+export type ArticlePartsFragment = { __typename: 'Article', title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, showTableOfContents?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null };
 
 export type ProjectPartsFragment = { __typename: 'Project', title: string, date: string, company?: string | null, role?: string | null, duration?: string | null, category?: string | null, tags?: Array<string | null> | null, featured?: boolean | null, published?: boolean | null, excerpt?: string | null, image?: string | null, technologies?: Array<string | null> | null, body?: any | null, impact?: { __typename: 'ProjectImpact', revenue?: string | null, users?: string | null, efficiency?: string | null } | null };
 
@@ -688,7 +691,7 @@ export type ArticleQueryVariables = Exact<{
 }>;
 
 
-export type ArticleQuery = { __typename?: 'Query', article: { __typename: 'Article', id: string, title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ArticleQuery = { __typename?: 'Query', article: { __typename: 'Article', id: string, title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, showTableOfContents?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type ArticleConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -700,7 +703,7 @@ export type ArticleConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ArticleConnectionQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArticleConnectionEdges', cursor: string, node?: { __typename: 'Article', id: string, title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ArticleConnectionQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArticleConnectionEdges', cursor: string, node?: { __typename: 'Article', id: string, title: string, date: string, category?: string | null, tags?: Array<string | null> | null, published?: boolean | null, showTableOfContents?: boolean | null, excerpt?: string | null, featuredImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type ProjectQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -777,6 +780,7 @@ export const ArticlePartsFragmentDoc = gql`
   category
   tags
   published
+  showTableOfContents
   excerpt
   featuredImage
   body

@@ -33,6 +33,7 @@ fragment ArticleParts on Article {
   category
   tags
   published
+  showTableOfContents
   excerpt
   featuredImage
   body
