@@ -33,7 +33,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {/* Article metadata - for articles WITH ToC */}
           {hasTableOfContents && (
             <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
-              <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
+              <time className="font-medium text-white/70">
                 {new Date(article.date).toLocaleDateString('en-US', { 
                   year: 'numeric', 
                   month: 'long', 
@@ -42,15 +42,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </time>
               {article.category && (
                 <>
-                  <span style={{color: 'var(--text-tertiary)'}}>•</span>
+                  <span className="text-white/50">•</span>
                   <Link
                     href={`/articles/category/${encodeURIComponent(article.category.toLowerCase())}`}
-                    className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105" 
-                    style={{
-                      background: 'var(--tag-bg)',
-                      color: 'var(--tag-text)',
-                      border: '1px solid var(--tag-border)'
-                    }}
+                    className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105 bg-white/10 text-white/90 border border-white/20 hover:bg-white/20"
                   >
                     {article.category}
                   </Link>
@@ -60,13 +55,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           )}
           
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white">
             {article.title}
           </h1>
           
           {/* Subtitle/Excerpt for centered layout */}
           {!hasTableOfContents && article.excerpt && (
-            <p className="mt-6 text-lg text-secondary max-w-2xl mx-auto">
+            <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
               {article.excerpt}
             </p>
           )}
@@ -74,7 +69,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {/* Article metadata - for centered articles BELOW excerpt */}
           {!hasTableOfContents && (
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm">
-              <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
+              <time className="font-medium text-white/70">
                 {new Date(article.date).toLocaleDateString('en-US', { 
                   year: 'numeric', 
                   month: 'long', 
@@ -83,15 +78,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </time>
               {article.category && (
                 <>
-                  <span style={{color: 'var(--text-tertiary)'}}>•</span>
+                  <span className="text-white/50">•</span>
                   <Link
                     href={`/articles/category/${encodeURIComponent(article.category.toLowerCase())}`}
-                    className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105" 
-                    style={{
-                      background: 'var(--tag-bg)',
-                      color: 'var(--tag-text)',
-                      border: '1px solid var(--tag-border)'
-                    }}
+                    className="px-2 py-1 text-xs rounded-full font-medium transition-all hover:scale-105 bg-white/10 text-white/90 border border-white/20 hover:bg-white/20"
                   >
                     {article.category}
                   </Link>
