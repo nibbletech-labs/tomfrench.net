@@ -1,45 +1,51 @@
 export function WavyBackground() {
   return (
-    <div className="fixed top-0 left-0 right-0 h-[450px] pointer-events-none z-0">
-      {/* Layer 1 - Back layer, lighter blue */}
+    <div className="absolute top-0 left-0 right-0 h-[450px] pointer-events-none z-0">
+      {/* Layer 1 - Back layer, cyan to blue gradient */}
       <svg
-        className="absolute top-0 left-0 w-full h-full opacity-20 dark:opacity-15"
+        className="absolute top-0 left-0 w-full h-full opacity-30 dark:opacity-20"
         viewBox="0 0 1440 450"
         preserveAspectRatio="none"
       >
+        <defs>
+          <linearGradient id="back-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style={{ stopColor: 'var(--gradient-from)' }} />
+            <stop offset="100%" style={{ stopColor: 'var(--gradient-via)' }} />
+          </linearGradient>
+        </defs>
         <path
-          fill="var(--gradient-via)"
-          d="M0,300 Q360,250 720,280 T1440,260 L1440,0 L0,0 Z"
+          fill="url(#back-gradient)"
+          d="M0,350 Q720,200 1440,100 L1440,0 L0,0 Z"
         />
       </svg>
 
       {/* Layer 2 - Middle layer, blue to purple gradient */}
       <svg
-        className="absolute top-0 left-0 w-full h-full opacity-25 dark:opacity-20"
+        className="absolute top-0 left-0 w-full h-full opacity-35 dark:opacity-25"
         viewBox="0 0 1440 450"
         preserveAspectRatio="none"
       >
         <defs>
-          <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="middle-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" style={{ stopColor: 'var(--gradient-via)' }} />
             <stop offset="100%" style={{ stopColor: 'var(--gradient-to)' }} />
           </linearGradient>
         </defs>
         <path
-          fill="url(#wave-gradient)"
-          d="M0,350 Q480,280 960,320 T1440,300 L1440,0 L0,0 Z"
+          fill="url(#middle-gradient)"
+          d="M0,380 Q720,180 1440,80 L1440,0 L0,0 Z"
         />
       </svg>
 
-      {/* Layer 3 - Front layer, purple */}
+      {/* Layer 3 - Front layer, purple gradient accent */}
       <svg
-        className="absolute top-0 left-0 w-full h-full opacity-30 dark:opacity-25"
+        className="absolute top-0 left-0 w-full h-full opacity-25 dark:opacity-15"
         viewBox="0 0 1440 450"
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-to)"
-          d="M0,400 Q720,320 1440,380 L1440,0 L0,0 Z"
+          d="M0,400 Q720,150 1440,50 L1440,0 L0,0 Z"
         />
       </svg>
     </div>
