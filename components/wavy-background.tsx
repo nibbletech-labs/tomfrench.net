@@ -1,42 +1,42 @@
 export function WavyBackground() {
   return (
-    <div className="absolute top-0 left-0 right-0 h-[600px] pointer-events-none" style={{ zIndex: -1 }}>
+    <div className="absolute top-0 left-0 right-0 h-[450px] pointer-events-none" style={{ zIndex: -1 }}>
       {/* Layer 1 - Back layer, purple */}
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1440 600"
+        viewBox="0 0 1440 450"
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-to)"
           fillOpacity="0.6"
-          d="M0,500 C480,550 960,550 1440,100 L1440,0 L0,0 Z"
+          d="M0,400 C480,450 960,450 1440,50 L1440,0 L0,0 Z"
         />
       </svg>
 
       {/* Layer 2 - Middle layer, cyan/teal */}
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1440 600"
+        viewBox="0 0 1440 450"
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-from)"
           fillOpacity="0.7"
-          d="M0,450 C480,500 960,500 1440,150 L1440,0 L0,0 Z"
+          d="M0,350 C480,400 960,400 1440,100 L1440,0 L0,0 Z"
         />
       </svg>
 
       {/* Layer 3 - Front/top layer, blue (main color) */}
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1440 600"
+        viewBox="0 0 1440 450"
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-via)"
           fillOpacity="0.8"
-          d="M0,400 C480,450 960,450 1440,200 L1440,0 L0,0 Z"
+          d="M0,300 C480,350 960,350 1440,150 L1440,0 L0,0 Z"
         />
       </svg>
     </div>
