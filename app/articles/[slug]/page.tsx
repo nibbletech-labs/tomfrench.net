@@ -2,6 +2,7 @@ import { getArticle, getArticles } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import TableOfContents from '@/components/TableOfContents'
+import { WavyBackground } from '@/components/wavy-background'
 
 export async function generateStaticParams() {
   const articles = await getArticles()
@@ -19,9 +20,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <article className="min-h-screen">
+    <article className="min-h-screen relative">
+      {/* Wavy background decoration */}
+      <WavyBackground />
+      
       {/* Article Header */}
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-5xl px-6 relative">
         <header className="py-12">
           {/* Article metadata */}
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
