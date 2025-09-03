@@ -29,7 +29,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       
       {/* Article Header - above waves with z-index */}
       <div className={`mx-auto px-6 relative z-10 ${hasTableOfContents ? 'max-w-5xl' : 'max-w-3xl'}`}>
-        <header className={`${hasTableOfContents ? 'pt-10 pb-32' : 'pt-20 pb-40 text-center'}`}>
+        <header className={`${hasTableOfContents ? 'pt-10 pb-32' : 'pt-40 pb-20 text-center'}`}>
           {/* Article metadata */}
           <div className={`mb-6 text-sm ${hasTableOfContents ? 'flex flex-wrap items-center gap-2' : 'flex flex-wrap items-center justify-center gap-2'}`}>
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
