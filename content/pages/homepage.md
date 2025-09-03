@@ -1,11 +1,10 @@
 ---
 title: Homepage
 heroTitle: 'Hi, I''m Tom'
-heroSubtitle: Chief Product Officer
+heroSubtitle: Chief Product Officer & Advisor
 heroDescription: >-
   Transforming businesses through customer-centric product strategy and
-  high-performing teams. Previously CPO at Utility Warehouse (FTSE 250) and
-  Alfred. Founded BrightSun (exited).
+  high-performing teams. Currently Interim CPO & Advisor at Alfred. Previously CPO at Utility Warehouse (FTSE 250).
 profileImage: /attachments/Me.png
 ideasExploring:
   - title: AI-Native Product Development
@@ -21,24 +20,39 @@ ideasExploring:
   - title: Platform Strategy
     description: Building scalable product platforms that enable rapid feature development
 experienceHighlights:
+  - company: NibbleTech Labs
+    role: Founder
+    period: Jan 2025 - Present
+    description: Innovative ai-centred products to improve development workflows. And some fun things too.
+    logo: ''
+  - company: Alfred
+    role: Interim Chief Product Officer & Advisor
+    period: Jan 2025 - Present
+    description: Game-changing multi-service utility company looking to shake up the industry
+    logo: '/attachments/alfred.jpg'
   - company: Utility Warehouse
     role: Chief Product Officer
-    period: 2022-2024
-    description: Led product strategy for FTSE 250 multi-utility provider
-    achievement: 'Transformed customer experience, achieving highest NPS in company history'
-  - company: Alfred
-    role: Chief Product Officer
-    period: 2020-2022
-    description: Built product team and strategy for property management platform
-    achievement: 'Scaled platform to manage 50,000+ properties across the US'
+    period: Jun 2022 - Jun 2024
+    description: Digital transformation at a FTSE250
+    logo: '/attachments/uw.jpg'
+  - company: OVO Energy
+    role: Head of Product
+    period: Sep 2017 - Aug 2019
+    description: Built the retail product and UX function during OVO's scale-up phase and some cool En-tech products as well.
+    logo: '/attachments/ovo.jpg'
   - company: BrightSun
-    role: Founder & CEO
-    period: 2015-2020
-    description: Founded and grew B2B SaaS platform for solar industry
-    achievement: Successfully exited after reaching 1000+ business customers
+    role: Co-Founder & Product Lead
+    period: Sep 2013 - Feb 2015
+    description: Automated lead-sourcing for the VC industry. VC-backed AI startup.
+    logo: ''
+  - company: TIM
+    role: Product & Strategy Director
+    period: Jan 2012 - Aug 2013
+    description: Led product strategy for B2B financial software serving Goldman Sachs, Barclays and BlackRock. Created innovation function generating £2M revenue.
+    logo: ''
 socialLinks:
-  linkedin: 'https://linkedin.com/in/tomfrench'
-  github: 'https://github.com/tomfrench'
+  linkedin: 'https://www.linkedin.com/in/tom-french-9386907/'
+  github: 'https://github.com/thfrench'
   twitter: 'https://twitter.com/tomfrench'
 ---
 

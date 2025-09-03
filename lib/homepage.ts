@@ -18,6 +18,7 @@ export interface Homepage {
     period?: string
     description?: string
     achievement?: string
+    logo?: string
   }[]
   socialLinks?: {
     linkedin?: string
