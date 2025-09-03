@@ -20,13 +20,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <article className="min-h-screen relative">
-      {/* Wavy background decoration */}
+    <article className="min-h-screen">
+      {/* Wavy background decoration - behind everything */}
       <WavyBackground />
       
-      {/* Article Header */}
-      <div className="mx-auto max-w-5xl px-6 relative">
-        <header className="pt-12 pb-20">
+      {/* Article Header - above waves with z-index */}
+      <div className="mx-auto max-w-5xl px-6 relative z-10">
+        <header className="pt-32 pb-20">
           {/* Article metadata */}
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
@@ -62,7 +62,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       </div>
 
       {/* Article Body with ToC */}
-      <div className="mx-auto max-w-5xl px-6 py-12">
+      <div className="mx-auto max-w-5xl px-6 py-12 relative z-10">
         <div className={`${article.showTableOfContents && article.headings && article.headings.length > 0 ? 'lg:grid lg:grid-cols-[1fr_280px] lg:gap-12' : ''}`}>
           {/* Main Content */}
           <div className="max-w-3xl">
