@@ -29,12 +29,12 @@ experienceHighlights:
     role: Interim Chief Product Officer & Advisor
     period: Jan 2025 - Present
     description: Game-changing multi-service utility company looking to shake up the industry
-    logo: '/attachments/alfred.jpg'
+    logo: '/attachments/alfred.png'
   - company: Utility Warehouse
     role: Chief Product Officer
     period: Jun 2022 - Jun 2024
     description: Digital transformation at a FTSE250
-    logo: '/attachments/uw.jpg'
+    logo: '/attachments/uw.png'
   - company: OVO Energy
     role: Head of Product
     period: Sep 2017 - Aug 2019

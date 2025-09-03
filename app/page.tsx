@@ -223,137 +223,154 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Split Content Section - Ideas & Experience */}
+      {/* Ideas Section - Above Experience */}
       <section className="mb-12">
-        <div className="grid gap-16 lg:grid-cols-2">
-          {/* Left side - Ideas I'm Exploring */}
-          <div>
-            <h2 className="mb-8 text-2xl font-bold sm:text-3xl">Ideas I'm exploring</h2>
-            {homepage.ideasExploring && homepage.ideasExploring.length > 0 ? (
-              <div className="space-y-4">
-                {homepage.ideasExploring.map((area, index) => {
-                  const colors = ['bg-blue-500', 'bg-purple-500', 'bg-green-500', 'bg-orange-500', 'bg-teal-500', 'bg-pink-500'];
-                  return (
-                    <div key={index} className="flex items-start gap-4 rounded-2xl p-2">
-                      <div className={`mt-1 h-2 w-2 rounded-full ${colors[index % colors.length]}`}></div>
-                      <div>
-                        <h3 className="mb-1 text-lg font-semibold">{area.title}</h3>
-                        {area.description && (
-                          <p className="text-sm text-secondary">{area.description}</p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-blue-500"></div>
+        <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Ideas I'm exploring</h2>
+        {homepage.ideasExploring && homepage.ideasExploring.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            {homepage.ideasExploring.map((area, index) => {
+              const colors = ['bg-blue-500', 'bg-purple-500', 'bg-green-500', 'bg-orange-500', 'bg-teal-500', 'bg-pink-500'];
+              return (
+                <div key={index} className="flex items-start gap-4 rounded-2xl p-2">
+                  <div className={`mt-1 h-2 w-2 rounded-full ${colors[index % colors.length]}`}></div>
                   <div>
-                    <h3 className="mb-1 text-lg font-semibold">AI-Native Product Development</h3>
-                    <p className="text-sm text-secondary">How teams can integrate AI into every stage of the product lifecycle</p>
+                    <h3 className="mb-1 text-lg font-semibold">{area.title}</h3>
+                    {area.description && (
+                      <p className="text-sm text-secondary">{area.description}</p>
+                    )}
                   </div>
                 </div>
-                
-                <div className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-purple-500"></div>
-                  <div>
-                    <h3 className="mb-1 text-lg font-semibold">Remote Team Dynamics</h3>
-                    <p className="text-sm text-secondary">Building high-trust, high-performance distributed product teams</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-green-500"></div>
-                  <div>
-                    <h3 className="mb-1 text-lg font-semibold">Sustainable Growth Models</h3>
-                    <p className="text-sm text-secondary">Balancing rapid scaling with long-term organizational health</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-orange-500"></div>
-                  <div>
-                    <h3 className="mb-1 text-lg font-semibold">Data-Driven Decision Making</h3>
-                    <p className="text-sm text-secondary">Moving beyond vanity metrics to actionable product insights</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-teal-500"></div>
-                  <div>
-                    <h3 className="mb-1 text-lg font-semibold">Customer-Centric Innovation</h3>
-                    <p className="text-sm text-secondary">Systematic approaches to understanding and solving real customer problems</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4 rounded-2xl p-2">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-pink-500"></div>
-                  <div>
-                    <h3 className="mb-1 text-lg font-semibold">Platform Strategy</h3>
-                    <p className="text-sm text-secondary">Building scalable product platforms that enable rapid feature development</p>
-                  </div>
-                </div>
-              </div>
-            )}
+              );
+            })}
           </div>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="flex items-start gap-4 rounded-2xl p-2">
+              <div className="mt-1 h-2 w-2 rounded-full bg-blue-500"></div>
+              <div>
+                <h3 className="mb-1 text-lg font-semibold">AI-Native Product Development</h3>
+                <p className="text-sm text-secondary">How teams can integrate AI into every stage of the product lifecycle</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 rounded-2xl p-2">
+              <div className="mt-1 h-2 w-2 rounded-full bg-purple-500"></div>
+              <div>
+                <h3 className="mb-1 text-lg font-semibold">Remote Team Dynamics</h3>
+                <p className="text-sm text-secondary">Building high-trust, high-performance distributed product teams</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 rounded-2xl p-2">
+              <div className="mt-1 h-2 w-2 rounded-full bg-green-500"></div>
+              <div>
+                <h3 className="mb-1 text-lg font-semibold">Sustainable Growth Models</h3>
+                <p className="text-sm text-secondary">Balancing rapid scaling with long-term organizational health</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 rounded-2xl p-2">
+              <div className="mt-1 h-2 w-2 rounded-full bg-orange-500"></div>
+              <div>
+                <h3 className="mb-1 text-lg font-semibold">Data-Driven Decision Making</h3>
+                <p className="text-sm text-secondary">Moving beyond vanity metrics to actionable product insights</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 rounded-2xl p-2">
+              <div className="mt-1 h-2 w-2 rounded-full bg-teal-500"></div>
+              <div>
+                <h3 className="mb-1 text-lg font-semibold">Customer-Centric Innovation</h3>
+                <p className="text-sm text-secondary">Systematic approaches to understanding and solving real customer problems</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 rounded-2xl p-2">
+              <div className="mt-1 h-2 w-2 rounded-full bg-pink-500"></div>
+              <div>
+                <h3 className="mb-1 text-lg font-semibold">Platform Strategy</h3>
+                <p className="text-sm text-secondary">Building scalable product platforms that enable rapid feature development</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
 
-          {/* Right side - Experience Highlights */}
-          <div>
-            <h2 className="mb-8 text-2xl font-bold sm:text-3xl">Experience highlights</h2>
-            {homepage.experienceHighlights && homepage.experienceHighlights.length > 0 ? (
-              <div className="space-y-8">
-                {homepage.experienceHighlights.map((exp, index) => {
-                  const colors = ['border-blue-500', 'border-purple-500', 'border-green-500', 'border-orange-500'];
-                  return (
-                    <div key={index} className={`border-l-4 ${colors[index % colors.length]} pl-6`}>
+      {/* Experience Timeline - Full Width */}
+      <section className="mb-12">
+        <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Experience highlights</h2>
+        {homepage.experienceHighlights && homepage.experienceHighlights.length > 0 ? (
+          <div className="relative">
+            {/* Vertical gradient line */}
+            <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 via-emerald-500 via-orange-500 via-pink-500 to-teal-500"></div>
+            
+            {/* Timeline entries */}
+            <div className="space-y-8">
+              {homepage.experienceHighlights.map((exp, index) => {
+                const colors = ['bg-blue-500', 'bg-purple-500', 'bg-emerald-500', 'bg-orange-500', 'bg-pink-500', 'bg-teal-500'];
+                return (
+                  <div key={index} className="relative pl-14">
+                    {/* Logo or colored square */}
+                    <div className="absolute left-0 -translate-x-0">
+                      {exp.logo ? (
+                        <img 
+                          src={exp.logo} 
+                          alt={exp.company}
+                          className="h-10 w-10 rounded-lg object-cover"
+                        />
+                      ) : (
+                        <div className={`h-10 w-10 rounded-lg ${colors[index % colors.length]}`}></div>
+                      )}
+                    </div>
+                    
+                    {/* Content */}
+                    <div>
                       <h3 className="text-lg font-semibold">{exp.role}</h3>
                       <p className="text-sm text-muted">{exp.company} {exp.period && `• ${exp.period}`}</p>
                       {exp.description && (
                         <p className="mt-2 text-secondary">{exp.description}</p>
                       )}
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="space-y-8">
-                <div className="border-l-4 border-blue-500 pl-6">
-                  <h3 className="text-lg font-semibold">Chief Product Officer</h3>
-                  <p className="text-sm text-muted">Utility Warehouse • FTSE 250</p>
-                  <p className="mt-2 text-secondary">
-                    Led product organization serving 1M+ customers. Delivered £10M+ operational savings through digital transformation initiatives.
-                  </p>
-                </div>
-                
-                <div className="border-l-4 border-purple-500 pl-6">
-                  <h3 className="text-lg font-semibold">Chief Product Officer</h3>
-                  <p className="text-sm text-muted">Alfred • Proptech Scale-up</p>
-                  <p className="mt-2 text-secondary">
-                    Built product from 0-1 and scaled to serve enterprise clients. Grew team from 5 to 35+ across product, design, and engineering.
-                  </p>
-                </div>
-                
-                <div className="border-l-4 border-green-500 pl-6">
-                  <h3 className="text-lg font-semibold">Founder & CEO</h3>
-                  <p className="text-sm text-muted">BrightSun • Successfully Exited</p>
-                  <p className="mt-2 text-secondary">
-                    Founded and scaled SaaS platform for energy management. Built team of 15+ and achieved successful exit to strategic buyer.
-                  </p>
-                </div>
-                
-                <div className="border-l-4 border-orange-500 pl-6">
-                  <h3 className="text-lg font-semibold">Product Leader</h3>
-                  <p className="text-sm text-muted">Previous Roles</p>
-                  <p className="mt-2 text-secondary">
-                    Product management roles at high-growth startups and established companies across fintech, energy, and enterprise software.
-                  </p>
-                </div>
-              </div>
-            )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="space-y-8">
+            <div className="border-l-4 border-blue-500 pl-6">
+              <h3 className="text-lg font-semibold">Chief Product Officer</h3>
+              <p className="text-sm text-muted">Utility Warehouse • FTSE 250</p>
+              <p className="mt-2 text-secondary">
+                Led product organization serving 1M+ customers. Delivered £10M+ operational savings through digital transformation initiatives.
+              </p>
+            </div>
+            
+            <div className="border-l-4 border-purple-500 pl-6">
+              <h3 className="text-lg font-semibold">Chief Product Officer</h3>
+              <p className="text-sm text-muted">Alfred • Proptech Scale-up</p>
+              <p className="mt-2 text-secondary">
+                Built product from 0-1 and scaled to serve enterprise clients. Grew team from 5 to 35+ across product, design, and engineering.
+              </p>
+            </div>
+            
+            <div className="border-l-4 border-green-500 pl-6">
+              <h3 className="text-lg font-semibold">Founder & CEO</h3>
+              <p className="text-sm text-muted">BrightSun • Successfully Exited</p>
+              <p className="mt-2 text-secondary">
+                Founded and scaled SaaS platform for energy management. Built team of 15+ and achieved successful exit to strategic buyer.
+              </p>
+            </div>
+            
+            <div className="border-l-4 border-orange-500 pl-6">
+              <h3 className="text-lg font-semibold">Product Leader</h3>
+              <p className="text-sm text-muted">Previous Roles</p>
+              <p className="mt-2 text-secondary">
+                Product management roles at high-growth startups and established companies across fintech, energy, and enterprise software.
+              </p>
+            </div>
+          </div>
+        )}
       </section>
     </div>
   )
