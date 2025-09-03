@@ -8,13 +8,22 @@ interface TableOfContentsProps {
 }
 
 export default function TableOfContents({ headings }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>('')
+  const [activeId, setActiveId] = useState<string>('top')
   
   useEffect(() => {
+    // Check if we're at the top of the page
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveId('top')
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && window.scrollY >= 100) {
             setActiveId(entry.target.id)
           }
         })
@@ -37,6 +46,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     })
     
     return () => {
+      window.removeEventListener('scroll', handleScroll)
       headings.forEach(({ id }) => {
         const element = document.getElementById(id)
         if (element) {
@@ -48,16 +58,26 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
-    const element = document.getElementById(id)
-    if (element) {
-      const offset = 100 // Account for fixed header (should match rootMargin top value)
-      const top = element.getBoundingClientRect().top + window.scrollY - offset
+    
+    if (id === 'top') {
+      // Scroll to top of page
       window.scrollTo({
-        top,
+        top: 0,
         behavior: 'smooth'
       })
-      // Set active immediately for better UX
-      setActiveId(id)
+      setActiveId('top')
+    } else {
+      const element = document.getElementById(id)
+      if (element) {
+        const offset = 100 // Account for fixed header (should match rootMargin top value)
+        const top = element.getBoundingClientRect().top + window.scrollY - offset
+        window.scrollTo({
+          top,
+          behavior: 'smooth'
+        })
+        // Set active immediately for better UX
+        setActiveId(id)
+      }
     }
   }
   
@@ -68,9 +88,20 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   return (
     <aside className="sticky top-24">
       <nav className="text-sm">
-        <h2 className="mb-4 text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+        <a
+          href="#top"
+          onClick={(e) => handleClick(e, 'top')}
+          className={`
+            block mb-4 text-xs font-bold uppercase tracking-wider
+            transition-all duration-200
+            ${activeId === 'top'
+              ? 'text-blue-600 dark:text-blue-400' 
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+            }
+          `}
+        >
           On This Page
-        </h2>
+        </a>
         <ul className="space-y-2">
           {headings.map((heading) => {
             const isActive = activeId === heading.id
