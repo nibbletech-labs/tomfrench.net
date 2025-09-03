@@ -1,42 +1,57 @@
-export function WavyBackground() {
+export function WavyBackground({ variant = 'default' }: { variant?: 'default' | 'centered' }) {
+  const isCompact = variant === 'centered'
+  const height = isCompact ? 350 : 450
+  const viewBox = `0 0 1440 ${height}`
+  
+  // Adjust curves for centered layout - higher and more compact
+  const paths = isCompact ? {
+    back: `M0,280 C480,320 960,320 1440,40 L1440,0 L0,0 Z`,
+    middle: `M0,250 C480,290 960,290 1440,80 L1440,0 L0,0 Z`,
+    front: `M0,220 C480,260 960,260 1440,120 L1440,0 L0,0 Z`
+  } : {
+    back: `M0,400 C480,450 960,450 1440,50 L1440,0 L0,0 Z`,
+    middle: `M0,350 C480,400 960,400 1440,100 L1440,0 L0,0 Z`,
+    front: `M0,300 C480,350 960,350 1440,150 L1440,0 L0,0 Z`
+  }
+  
   return (
-    <div className="absolute top-0 left-0 right-0 h-[450px] pointer-events-none" style={{ zIndex: -1 }}>
+    <div className={`absolute top-0 left-0 right-0 pointer-events-none`} style={{ height: `${height}px`, zIndex: -1 }}>
       {/* Layer 1 - Back layer, purple */}
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1440 450"
+        viewBox={viewBox}
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-to)"
           fillOpacity="0.6"
-          d="M0,400 C480,450 960,450 1440,50 L1440,0 L0,0 Z"
+          d={paths.back}
         />
       </svg>
 
       {/* Layer 2 - Middle layer, cyan/teal */}
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1440 450"
+        viewBox={viewBox}
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-from)"
           fillOpacity="0.7"
-          d="M0,350 C480,400 960,400 1440,100 L1440,0 L0,0 Z"
+          d={paths.middle}
         />
       </svg>
 
       {/* Layer 3 - Front/top layer, blue (main color) */}
       <svg
         className="absolute top-0 left-0 w-full h-full"
-        viewBox="0 0 1440 450"
+        viewBox={viewBox}
         preserveAspectRatio="none"
       >
         <path
           fill="var(--gradient-via)"
           fillOpacity="0.8"
-          d="M0,300 C480,350 960,350 1440,150 L1440,0 L0,0 Z"
+          d={paths.front}
         />
       </svg>
     </div>
