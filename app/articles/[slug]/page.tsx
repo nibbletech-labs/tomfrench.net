@@ -26,7 +26,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       
       {/* Article Header - above waves with z-index */}
       <div className="mx-auto max-w-5xl px-6 relative z-10">
-        <header className="pt-10 pb-20">
+        <header className="pt-10 pb-32">
           {/* Article metadata */}
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
