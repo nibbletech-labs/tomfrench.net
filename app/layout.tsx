@@ -51,7 +51,7 @@ export default function RootLayout({
             // Normal site layout
             <div className="flex min-h-screen flex-col">
             {/* Modern Centered Navigation */}
-            <header className="fixed left-0 right-0 top-0 z-50 backdrop-blur-xl" style={{backgroundColor: 'color-mix(in srgb, var(--background) 80%, transparent)'}}>
+            <header className="fixed left-0 right-0 top-0 z-50">
               <nav className="mx-auto flex h-20 max-w-6xl items-center px-6">
                 <div className="flex w-full items-center justify-between">
                   {/* Logo - now a circular TF button when not on homepage */}
