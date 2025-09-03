@@ -19,16 +19,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
+  // Check if article has table of contents
+  const hasTableOfContents = article.showTableOfContents && article.headings && article.headings.length > 0
+
   return (
     <article className="min-h-screen">
       {/* Wavy background decoration - behind everything */}
       <WavyBackground />
       
       {/* Article Header - above waves with z-index */}
-      <div className="mx-auto max-w-5xl px-6 relative z-10">
-        <header className="pt-10 pb-32">
+      <div className={`mx-auto px-6 relative z-10 ${hasTableOfContents ? 'max-w-5xl' : 'max-w-3xl'}`}>
+        <header className={`${hasTableOfContents ? 'pt-10 pb-32' : 'pt-20 pb-40 text-center'}`}>
           {/* Article metadata */}
-          <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
+          <div className={`mb-6 text-sm ${hasTableOfContents ? 'flex flex-wrap items-center gap-2' : 'flex flex-wrap items-center justify-center gap-2'}`}>
             <time className="font-medium" style={{color: 'var(--text-secondary)'}}>
               {new Date(article.date).toLocaleDateString('en-US', { 
                 year: 'numeric', 
@@ -58,14 +61,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary">
             {article.title}
           </h1>
+          
+          {/* Subtitle/Excerpt for centered layout */}
+          {!hasTableOfContents && article.excerpt && (
+            <p className="mt-6 text-lg text-secondary max-w-2xl mx-auto">
+              {article.excerpt}
+            </p>
+          )}
         </header>
       </div>
 
       {/* Article Body with ToC */}
-      <div className="mx-auto max-w-5xl px-6 py-12 relative z-10">
-        <div className={`${article.showTableOfContents && article.headings && article.headings.length > 0 ? 'lg:grid lg:grid-cols-[1fr_280px] lg:gap-12' : ''}`}>
+      <div className={`mx-auto px-6 py-12 relative z-10 ${hasTableOfContents ? 'max-w-5xl' : 'max-w-3xl'}`}>
+        <div className={`${hasTableOfContents ? 'lg:grid lg:grid-cols-[1fr_280px] lg:gap-12' : ''}`}>
           {/* Main Content */}
-          <div className="max-w-3xl">
+          <div className={`${hasTableOfContents ? 'max-w-3xl' : 'max-w-2xl mx-auto'}`}>
             {article.featuredImage && (
               <div className="mb-12 overflow-hidden rounded-xl">
                 <img 
@@ -84,11 +94,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             {/* Tags section */}
             {article.tags && article.tags.length > 0 && (
-              <div className="mt-16 pt-8">
+              <div className={`mt-16 pt-8 ${hasTableOfContents ? '' : 'text-center'}`}>
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider" style={{color: 'var(--text-secondary)'}}>
                   Tagged with
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className={`flex flex-wrap gap-2 ${hasTableOfContents ? '' : 'justify-center'}`}>
                   {article.tags.map((tag) => (
                     <Link
                       key={tag}
