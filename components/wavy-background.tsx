@@ -1,6 +1,6 @@
 export function WavyBackground() {
   return (
-    <div className="absolute top-0 left-0 right-0 h-[450px] pointer-events-none z-0">
+    <div className="absolute top-0 left-0 right-0 h-[450px] pointer-events-none" style={{ zIndex: -1 }}>
       {/* Layer 1 - Back/largest layer, blue (main color) */}
       <svg
         className="absolute top-0 left-0 w-full h-full opacity-40 dark:opacity-30"
