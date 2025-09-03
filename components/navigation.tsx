@@ -55,8 +55,8 @@ export function Navigation() {
               }`}
               style={{
                 top: '-5rem', // Extend above nav to top of viewport
-                height: '10rem', // Tall enough to cover from top to below nav item
-                background: 'var(--gradient-via)', // Match wave blue color
+                height: '5rem', // Only extend to nav item, no bottom padding
+                background: 'hsl(220 88% 35%)', // Darker blue matching wave top layer
                 zIndex: -1,
               }}
             />
