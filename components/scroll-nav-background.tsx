@@ -7,8 +7,11 @@ export function ScrollNavBackground() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Add background when scrolled more than 50px
-      setIsScrolled(window.scrollY > 50)
+      // Add background when the main content reaches the nav bar
+      // This is roughly when the waves end and article content begins
+      // Nav is 80px (h-20), waves are 450px, header padding is 96px (pt-24)
+      // So trigger around 350-380px when content is about to go under nav
+      setIsScrolled(window.scrollY > 360)
     }
 
     // Check initial scroll position
