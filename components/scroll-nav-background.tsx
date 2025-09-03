@@ -13,9 +13,16 @@ export function ScrollNavBackground() {
       let threshold = 50 // Default for most pages
       
       if (pathname?.startsWith('/articles/')) {
-        // Article pages with waves need higher threshold
-        // Waves are 450px, header padding is 80px (pt-20)
-        threshold = 350
+        // Check if there's a table of contents on the page to determine layout type
+        const hasTableOfContents = document.querySelector('aside nav') !== null
+        
+        if (!hasTableOfContents) {
+          // Centered articles with compact waves (350px height, curves at ~140-200px)
+          threshold = 220
+        } else {
+          // Articles with ToC have regular waves (450px)
+          threshold = 350
+        }
       } else if (pathname === '/') {
         // Homepage might need different threshold
         threshold = 100
@@ -24,8 +31,8 @@ export function ScrollNavBackground() {
       setIsScrolled(window.scrollY > threshold)
     }
 
-    // Check initial scroll position
-    handleScroll()
+    // Check initial scroll position after a small delay to ensure DOM is ready
+    setTimeout(handleScroll, 100)
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
