@@ -3,11 +3,11 @@ export function WavyBackground({ variant = 'default' }: { variant?: 'default' | 
   const height = isCompact ? 350 : 450
   const viewBox = `0 0 1440 ${height}`
   
-  // Adjust curves for centered layout - higher and more compact
+  // Adjust curves for centered layout - much higher and more compact
   const paths = isCompact ? {
-    back: `M0,280 C480,320 960,320 1440,40 L1440,0 L0,0 Z`,
-    middle: `M0,250 C480,290 960,290 1440,80 L1440,0 L0,0 Z`,
-    front: `M0,220 C480,260 960,260 1440,120 L1440,0 L0,0 Z`
+    back: `M0,200 C480,240 960,240 1440,30 L1440,0 L0,0 Z`,
+    middle: `M0,170 C480,210 960,210 1440,60 L1440,0 L0,0 Z`,
+    front: `M0,140 C480,180 960,180 1440,90 L1440,0 L0,0 Z`
   } : {
     back: `M0,400 C480,450 960,450 1440,50 L1440,0 L0,0 Z`,
     middle: `M0,350 C480,400 960,400 1440,100 L1440,0 L0,0 Z`,
