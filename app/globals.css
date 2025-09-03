@@ -73,7 +73,11 @@
   --tag-text: hsl(var(--hue-neutral) 20% 40%);
   
   /* Text tertiary for subtle labels */
-  --text-tertiary: hsl(var(--hue-neutral) 10% 55%)
+  --text-tertiary: hsl(var(--hue-neutral) 10% 55%);
+  
+  /* Article surface colors for callouts */
+  --surface-article: #ffffff;
+  --text-article: #0b0b0b
 }
 
 /* Dark theme variables - only adjusting lightness values */
@@ -122,6 +126,10 @@
   --tag-bg: hsl(var(--hue-neutral) 20% 15%);
   --tag-border: hsl(var(--hue-neutral) 20% 25%);
   --tag-text: hsl(var(--hue-neutral) 20% 65%);
+  
+  /* Article surface colors for callouts - dark mode */
+  --surface-article: #0b0b0f;
+  --text-article: #e7e7ea;
   
   /* Text tertiary for subtle labels */
   --text-tertiary: hsl(var(--hue-neutral) 10% 45%)

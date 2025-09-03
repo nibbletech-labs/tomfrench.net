@@ -7,7 +7,7 @@ import { Navigation } from '@/components/navigation'
 import { HomeLogo } from '@/components/home-logo'
 import { HoldingPage } from '@/components/holding-page'
 import './globals.css'
-import './callouts-josh.css'
+import '../styles/callouts.css'
 import './article-typography.css'
 
 const inter = Inter({ subsets: ['latin'] })

@@ -10,13 +10,37 @@ excerpt: "Exploring how to build a comprehensive documentation system with callo
 
 When building modern documentation sites, two features stand out as essential for creating an exceptional reading experience: callout boxes for highlighting important information, and a table of contents for easy navigation. Today, we'll explore how these features transform technical content into something more engaging and accessible.
 
+## Callout Types Showcase
+
+Let's explore all the available callout types and when to use each one:
+
+:::info[Info - General Information]
+Use INFO callouts for general information that readers should be aware of. This is your default callout type for supplementary details that enhance understanding without interrupting the main narrative flow.
+:::
+
+:::tip[Tip - Helpful Suggestions]
+Use TIP callouts to share best practices, shortcuts, and insider knowledge. These are the "pro tips" that make developers more productive and help them work smarter, not harder.
+:::
+
+:::important[Important - Crucial Information]
+Use IMPORTANT callouts for crucial information necessary for users to succeed. This purple-accented callout draws attention to key concepts that readers must understand to achieve their goals.
+:::
+
+:::warning[Warning - Attention Required]
+Use WARNING callouts for critical content demanding immediate attention due to potential risks. These help prevent common mistakes and ensure best practices are followed.
+:::
+
+:::danger[Danger - Critical Alert]
+Use DANGER callouts for the most critical warnings about negative consequences. These red alerts indicate actions that could cause data loss, security issues, or system failures.
+:::
+
+:::success[Success - Positive Outcome]
+Use SUCCESS callouts to highlight successful completions, achievements, or positive outcomes. Great for confirming correct implementations or celebrating milestones.
+:::
+
 ## The Challenge of Technical Documentation
 
 Technical documentation often suffers from walls of text that make it difficult for readers to quickly find what they need. Without proper visual hierarchy and navigation aids, even the best content can feel overwhelming.
-
-:::info Why This Matters
-Studies show that readers scan content before reading in detail. Visual cues like callout boxes and navigation elements increase engagement by up to 40% and improve information retention significantly.
-:::
 
 The solution? Implement design patterns that guide readers through complex information while maintaining their attention and making key points memorable.
 
@@ -28,7 +52,7 @@ Callout boxes serve as visual anchors that break up content and highlight critic
 
 Different types of callouts serve different purposes in your documentation:
 
-:::tip Best Practice
+:::tip[Best Practice]
 Use callouts sparingly but strategically. Too many can overwhelm readers, while too few might cause them to miss important information. Aim for 1-2 callouts per major section.
 :::
 
@@ -38,7 +62,7 @@ Let's explore each callout type and when to use them effectively.
 
 ### Information Boxes
 
-:::info Database Connection
+:::info[Database Connection]
 When connecting to production databases, always use connection pooling to prevent overwhelming your database with too many concurrent connections. Most applications should start with a pool size of 10-20 connections.
 :::
 
@@ -46,7 +70,7 @@ Information boxes provide supplementary details that enhance understanding witho
 
 ### Warning Messages
 
-:::warning Security Consideration
+:::warning[Security Consideration]
 Never commit API keys or sensitive credentials to your repository. Use environment variables and `.env` files (added to `.gitignore`) for local development, and secure key management services for production deployments.
 :::
 
@@ -54,7 +78,7 @@ Warnings alert readers to potential issues before they encounter them. They're c
 
 ### Helpful Tips
 
-:::tip Performance Optimization
+:::tip[Performance Optimization]
 Enable gzip compression on your web server to reduce payload sizes by up to 70%. This simple configuration change can significantly improve load times, especially for users on slower connections.
 :::
 
@@ -76,7 +100,7 @@ The table of contents provides three key benefits:
 
 When implementing a table of contents, consider these factors:
 
-:::note Design Decision
+:::info[Design Decision]
 Our table of contents implementation uses intersection observers to highlight the active section as you scroll. This provides visual feedback about your reading position without being distracting.
 :::
 
@@ -94,7 +118,7 @@ The markdown processing pipeline transforms your content through several stages:
 2. **Transformation** - Apply custom plugins for callouts and heading IDs
 3. **Rendering** - Generate HTML with appropriate styling classes
 
-:::info Architecture Note
+:::info[Architecture Note]
 We use remark for markdown processing because it provides a plugin architecture that makes it easy to extend functionality. Custom plugins can transform the AST to add new syntax like our callout boxes.
 :::
 
@@ -120,7 +144,7 @@ The heading extraction process involves:
 3. Generating unique IDs for anchor links
 4. Building the table of contents data structure
 
-:::tip Performance Consideration
+:::tip[Performance Consideration]
 Heading extraction happens at build time, not runtime. This means zero performance impact for your users and instant table of contents rendering.
 :::
 
@@ -132,7 +156,7 @@ Mobile devices require special consideration for both features.
 
 On smaller screens, the table of contents transforms into a floating action button that reveals a modal overlay. This preserves screen real estate while maintaining functionality.
 
-:::warning Mobile UX
+:::warning[Mobile UX]
 Avoid fixed sidebars on mobile devices. They consume valuable screen space and can interfere with scrolling. Use toggleable overlays or expandable sections instead.
 :::
 
@@ -146,7 +170,7 @@ These features shine in various documentation scenarios:
 
 ### API Documentation
 
-:::info API Endpoint
+:::info[API Endpoint]
 `POST /api/v1/users`
 
 Creates a new user account. Requires authentication token in header.
@@ -159,7 +183,7 @@ API documentation benefits from information boxes that highlight endpoint detail
 
 ### Tutorial Content
 
-:::tip Learning Path
+:::tip[Learning Path]
 Start with the basics in Section 1, then move to intermediate concepts in Section 2. Advanced users can jump directly to Section 3 for optimization techniques.
 :::
 
@@ -167,7 +191,7 @@ Tutorials use tips to guide readers through learning paths and suggest next step
 
 ### Troubleshooting Guides
 
-:::caution Common Pitfall
+:::warning[Common Pitfall]
 If you see the error "Module not found", ensure you've run `npm install` after cloning the repository. This error often occurs when dependencies aren't properly installed.
 :::
 
@@ -192,7 +216,7 @@ Callout boxes use pure CSS for styling, avoiding JavaScript overhead for visual 
 }
 ```
 
-:::note Performance Win
+:::success[Performance Win]
 By using CSS custom properties, we can theme callouts for dark mode without duplicating styles or using JavaScript theme switching.
 :::
 
@@ -216,7 +240,7 @@ The table of contents supports full keyboard navigation:
 - Enter to navigate
 - Escape to close on mobile
 
-:::tip Accessibility Testing
+:::tip[Accessibility Testing]
 Test your documentation with screen readers like NVDA (Windows) or VoiceOver (Mac). You might be surprised by what you discover about your content's accessibility.
 :::
 
@@ -234,7 +258,7 @@ Imagine callouts that adapt based on user preferences or reading history:
 
 ### AI-Enhanced Navigation
 
-:::note Future Feature
+:::important[Future Feature]
 We're exploring AI-powered summaries that could appear in the table of contents, giving readers an even quicker way to assess section content before jumping in.
 :::
 
@@ -262,7 +286,7 @@ Let's wrap up with key best practices for implementing these features:
 
 Implementing callout boxes and table of contents transforms documentation from a necessary evil into a delightful resource that developers actually want to read.
 
-:::tip Implementation Checklist
+:::tip[Implementation Checklist]
 ✅ Add `showTableOfContents` field to your CMS schema
 ✅ Implement markdown processing for callouts
 ✅ Create responsive table of contents component

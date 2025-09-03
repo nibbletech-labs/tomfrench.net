@@ -1,0 +1,120 @@
+/* Scoped to article content */
+.article-content .callout {
+  --accent: oklch(0.78 0.12 255); /* default: info-ish blue */
+  --radius: 12px;
+  --pad: 1rem;
+  --stripe-w: 6px;
+  --icon: 34px; /* Increased by ~20% from 28px */
+
+  --article-bg: var(--surface-article, #fff);
+  --article-fg: var(--text-article, #0b0b0b);
+  --article-hairline: color-mix(in oklab, black 8%, transparent);
+
+  position: relative;
+  margin: 1.25rem 0;
+  padding: var(--pad);
+  padding-left: calc(var(--pad) + var(--stripe-w) + var(--icon) * 0.55);
+
+  color: var(--article-fg);
+  background: color-mix(in oklab, var(--accent) 10%, var(--article-bg));
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 15%, transparent) inset,
+    0 1px 0 var(--article-hairline) inset;
+}
+
+/* Glow stripe (pseudo-element, not a border) */
+.article-content .callout::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--stripe-w);
+  border-radius: var(--radius);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--accent) 75%, transparent) 0%,
+    color-mix(in oklab, var(--accent) 35%, transparent) 100%
+  );
+  box-shadow: 0 0 16px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+/* Icon badge - cut into the stripe */
+.article-content .callout__icon {
+  position: absolute;
+  top: calc(var(--pad) - 0.125rem);
+  left: calc(var(--stripe-w) / 2 - var(--icon) / 2);
+  width: var(--icon);
+  height: var(--icon);
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  /* Fully opaque solid color matching stripe */
+  background: linear-gradient(
+    to bottom,
+    oklch(from var(--accent) l c h),
+    oklch(from var(--accent) calc(l * 0.85) c h)
+  );
+  /* Subtle shadow for depth */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  /* Prevent hover from affecting this element */
+  pointer-events: none;
+}
+
+/* Style SVG icons - use article background color for cutout effect */
+.article-content .callout__icon svg {
+  width: calc(var(--icon) * 0.7); /* Increased from 0.58 to 0.7 */
+  height: calc(var(--icon) * 0.7);
+  /* Icon uses article background color to create cutout effect */
+  stroke: var(--article-bg);
+  stroke-width: 2;
+  fill: none;
+}
+
+.article-content .callout__title { margin: 0 0 0.25rem; font-weight: 700; }
+.article-content .callout__body > :first-child { margin-top: 0; }
+.article-content .callout__body > :last-child { margin-bottom: 0; }
+.article-content .callout__body > * + * { margin-top: 0.5rem; }
+
+/* Variants: only the accent changes */
+.article-content .callout[data-variant="info"],
+.article-content .callout[data-variant="note"]     { --accent: oklch(0.78 0.12 255); } /* Blue */
+.article-content .callout[data-variant="tip"]      { --accent: oklch(0.82 0.14 150); } /* Green */
+.article-content .callout[data-variant="important"] { --accent: oklch(0.75 0.18 275); } /* Purple */
+.article-content .callout[data-variant="warning"],
+.article-content .callout[data-variant="caution"]  { --accent: oklch(0.86 0.12 85);  } /* Yellow/Orange */
+.article-content .callout[data-variant="danger"]   { --accent: oklch(0.72 0.21 30);  } /* Red */
+.article-content .callout[data-variant="success"]  { --accent: oklch(0.82 0.14 160); } /* Slightly different green */
+
+/* Dark mode */
+[data-theme="dark"] .article-content .callout {
+  --article-bg: var(--surface-article, #0b0b0f);
+  --article-fg: var(--text-article, #e7e7ea);
+  background: color-mix(in oklab, var(--accent) 22%, var(--article-bg));
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent) inset,
+    0 1px 0 rgba(255,255,255,0.06);
+}
+[data-theme="dark"] .article-content .callout__icon {
+  /* Fully opaque solid gradient in dark mode */
+  background: linear-gradient(
+    to bottom,
+    oklch(from var(--accent) calc(l * 1.1) c h),
+    oklch(from var(--accent) l c h)
+  );
+}
+[data-theme="dark"] .article-content .callout__icon svg {
+  /* Icon still uses article background for cutout effect in dark */
+  stroke: var(--article-bg);
+}
+
+/* Container queries */
+.article-content .callout { container-type: inline-size; }
+@container (min-width: 28rem) { .article-content .callout { --icon: 40px; --stripe-w: 7px; } }
+@container (min-width: 44rem) { .article-content .callout { --icon: 48px; --stripe-w: 8px; } }
+
+/* Motion preference - removed hover animation to prevent jiggle */
+@media (prefers-reduced-motion: no-preference) {
+  /* Smooth transitions but no hover movement on icon */
+  .article-content .callout { transition: box-shadow .2s ease; }
+}
