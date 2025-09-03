@@ -5,9 +5,9 @@ export function WavyBackground({ variant = 'default' }: { variant?: 'default' | 
   
   // Adjust curves for centered layout - much higher and more compact
   const paths = isCompact ? {
-    back: `M0,200 C480,240 960,240 1440,30 L1440,0 L0,0 Z`,
-    middle: `M0,170 C480,210 960,210 1440,60 L1440,0 L0,0 Z`,
-    front: `M0,140 C480,180 960,180 1440,90 L1440,0 L0,0 Z`
+    back: `M0,120 C480,160 960,160 1440,20 L1440,0 L0,0 Z`,
+    middle: `M0,100 C480,140 960,140 1440,40 L1440,0 L0,0 Z`,
+    front: `M0,80 C480,120 960,120 1440,60 L1440,0 L0,0 Z`
   } : {
     back: `M0,400 C480,450 960,450 1440,50 L1440,0 L0,0 Z`,
     middle: `M0,350 C480,400 960,400 1440,100 L1440,0 L0,0 Z`,
