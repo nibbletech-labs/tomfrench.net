@@ -20,7 +20,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         })
       },
       {
-        rootMargin: '-20% 0% -70% 0%',
+        // Adjust rootMargin to account for fixed header (80px) and some padding
+        // Top margin should be negative (header height + buffer)
+        // Bottom margin should leave room for next section detection
+        rootMargin: '-100px 0% -66% 0%',
         threshold: 0
       }
     )
@@ -47,12 +50,14 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     e.preventDefault()
     const element = document.getElementById(id)
     if (element) {
-      const offset = 100 // Account for fixed header
+      const offset = 100 // Account for fixed header (should match rootMargin top value)
       const top = element.getBoundingClientRect().top + window.scrollY - offset
       window.scrollTo({
         top,
         behavior: 'smooth'
       })
+      // Set active immediately for better UX
+      setActiveId(id)
     }
   }
   
@@ -82,24 +87,12 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   className={`
                     block py-1 leading-relaxed
                     transition-all duration-200
-                    ${isActive ? 'font-medium' : ''}
+                    ${isActive 
+                      ? 'text-blue-600 dark:text-blue-400 font-medium' 
+                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100'
+                    }
                     ${isH3 ? 'text-xs' : 'text-sm'}
                   `}
-                  style={{
-                    color: isActive 
-                      ? 'var(--toc-text-active)' 
-                      : 'var(--toc-text-inactive)'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = 'var(--toc-text-hover)'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = 'var(--toc-text-inactive)'
-                    }
-                  }}
                 >
                   {heading.text}
                 </a>
