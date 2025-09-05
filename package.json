@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
+    "build": "if [ \"$SKIP_TINA_BUILD\" = \"true\" ]; then next build; else tinacms build && next build; fi",
     "start": "next start",
     "lint": "next lint",
     "tina": "tinacms dev"
